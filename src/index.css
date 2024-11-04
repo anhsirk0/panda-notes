@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply center h-screen w-screen transitional bg-base-200 flex flex-row relative;
+}
+
+.center {
+  @apply flex items-center justify-center;
+}
+
+.transitional {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.resp-text {
+  @apply text-sm md:text-base lg:text-base xl:text-2xl xxl:text-4xl;
+}
+
+.resp-btn {
+  @apply btn-xs md:btn-sm xxl:btn-md;
+}
+
+.resp-icon {
+  @apply size-4 lg:size-6 xxl:size-7;
+}
+
