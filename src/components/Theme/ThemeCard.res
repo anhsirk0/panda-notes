@@ -24,18 +24,17 @@ module MyOverrides = {
 
 @react.component
 let make = (~theme, ~children) => {
-  let store = SettingStore.use()
+  let {settings, update} = SettingStore.use()
 
   let onClick = _ => {
     theme->Utils.setTheme
-    store.update({theme, name: "Your"})
+    update({...settings, theme})
   }
 
-  let ring = theme == store.settings.theme ? "ring-2 ring-primary" : ""
+  let ring = theme == settings.theme ? "ring-2 ring-primary" : ""
 
   <li className={`btn h-10 w-full justify-between ${ring}`} onClick tabIndex=0 dataTheme=theme>
     {theme->React.string}
-    <div className="grow" />
     {children}
   </li>
 }
