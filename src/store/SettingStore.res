@@ -1,7 +1,7 @@
 open Zustand
 
 module StoreData = {
-  type settings = {theme: string}
+  type settings = {theme: string, name: string}
   type state = {
     settings: settings,
     update: settings => unit,
@@ -9,6 +9,7 @@ module StoreData = {
 
   let defaultSettings = {
     theme: "cupcake",
+    name: "Your",
   }
 }
 

@@ -1,14 +1,13 @@
 open Themes
+open SettingStore
 open Utils
 
 @react.component
 let make = () => {
+  let {settings} = SettingStore.use()
+
   React.useEffect(() => {
-    let theme = Dom.Storage2.getItem(Dom.Storage2.localStorage, "undooStartpageTheme")
-    switch theme {
-    | Some(theme) => theme->Utils.setTheme
-    | None => ()
-    }
+    settings.theme->Utils.setTheme
     None
   }, [])
 

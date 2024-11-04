@@ -4,4 +4,6 @@ module Icon = {
 
   @module("@phosphor-icons/react")
   external palette: t = "Palette"
+  @module("@phosphor-icons/react")
+  external check: t = "Check"
 }
