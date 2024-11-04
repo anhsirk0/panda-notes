@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #root {
-  @apply center h-screen w-screen transitional bg-base-200 flex flex-row relative;
+  @apply center h-screen w-screen transitional bg-base-100 flex flex-row relative;
 }
 
 .center {

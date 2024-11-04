@@ -5,4 +5,6 @@ module Icon = {
   @module("@phosphor-icons/react") external palette: t = "Palette"
   @module("@phosphor-icons/react") external arrowLineLeft: t = "ArrowLineLeft"
   @module("@phosphor-icons/react") external arrowLineRight: t = "ArrowLineRight"
+  @module("@phosphor-icons/react") external notePencil: t = "NotePencil"
+  @module("@phosphor-icons/react") external magnifyingGlass: t = "MagnifyingGlass"
 }

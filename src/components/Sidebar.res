@@ -1,11 +1,25 @@
 open SettingStore
 open Icon
 
+module ToggleSidebarButton = {
+  @react.component
+  let make = () => {
+    let {settings, toggleSidebar} = SettingStore.use()
+
+    let onClick = _ => toggleSidebar()
+    let ariaLabel = settings.sidebar ? "close-sidebar" : "open-sidebar"
+    let btnType = settings.sidebar ? "btn-ghost" : "btn-neutral"
+    let className = "resp-icon text-neutral-content"
+
+    <button onClick ariaLabel className={`btn ${btnType} btn-square resp-btn animate-grow`}>
+      {settings.sidebar ? <Icon.arrowLineLeft className /> : <Icon.arrowLineRight className />}
+    </button>
+  }
+}
+
 @react.component
 let make = () => {
-  let {settings, toggleSidebar} = SettingStore.use()
-
-  let onClose = _ => toggleSidebar()
+  let {settings} = SettingStore.use()
 
   let left = settings.sidebar ? "-left-56" : "-left-[34rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
@@ -29,22 +43,14 @@ let make = () => {
             className="btn btn-ghost btn-square resp-btn">
             <Icon.palette className="resp-icon text-neutral-content" />
           </button>
-          <button
-            onClick=onClose ariaLabel="close-sidebar" className="btn btn-ghost btn-square resp-btn">
-            <Icon.arrowLineLeft className="resp-icon text-neutral-content" />
-          </button>
+          <ToggleSidebarButton />
         </div>
       </div>
     </div>
     {settings.sidebar
       ? React.null
       : <div className="fixed bottom-4 left-4">
-          <button
-            onClick=onClose
-            ariaLabel="open-sidebar"
-            className="btn btn-neutral btn-square resp-btn">
-            <Icon.arrowLineRight className="resp-icon text-neutral-content" />
-          </button>
+          <ToggleSidebarButton />
         </div>}
   </React.Fragment>
 }
