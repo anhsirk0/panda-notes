@@ -49,7 +49,7 @@ let make = () => {
     </div>
     {settings.sidebar
       ? React.null
-      : <div className="fixed bottom-4 left-4">
+      : <div className="fixed bottom-4 left-4 z-[5]">
           <ToggleSidebarButton />
         </div>}
   </React.Fragment>
