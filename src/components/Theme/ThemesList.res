@@ -22,5 +22,10 @@ let make = () => {
     </ThemeCard>
   )
 
-  {React.array(themeCards)}
+  <ul
+    id="theme-container"
+    tabIndex=0
+    className="flex flex-col gap-4 w-56 p-4 min-h-0 overflow-y-auto bg-secondary">
+    {React.array(themeCards)}
+  </ul>
 }
