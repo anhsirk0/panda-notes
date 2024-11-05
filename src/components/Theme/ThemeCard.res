@@ -33,7 +33,7 @@ let make = (~theme, ~children) => {
 
   let ring = theme == settings.theme ? "ring-2 ring-primary" : ""
 
-  <li className={`btn h-10 w-full justify-between ${ring}`} onClick tabIndex=0 dataTheme=theme>
+  <li className={`btn w-full justify-between ${ring}`} onClick tabIndex=0 dataTheme=theme>
     {theme->React.string}
     {children}
   </li>
