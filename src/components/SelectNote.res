@@ -4,10 +4,10 @@ module NoteItem = {
   @react.component
   let make = (~isSelected=false) => {
     let bg = isSelected ? "bg-base-200/60" : ""
-    <div className={`card ${bg} w-full relative overflow-hidden shrink-0`}>
+    <div className={`card card-compact ${bg} w-full relative overflow-hidden shrink-0`}>
       {isSelected
         ? <div className="absolute inset-0 h-full w-2 bg-primary" />
-        : <div className="absolute bottom-0 left-[10%] h-[1px] w-[80%] bg-primary" />}
+        : <div className="absolute bottom-0 left-[5%] h-[1px] w-[90%] bg-base-content/50" />}
       <div className="card-body">
         <h2 className="card-title"> {"Card title"->React.string} </h2>
         <p> {"If a dog chews shoes whose shoes does he choose?"->React.string} </p>
