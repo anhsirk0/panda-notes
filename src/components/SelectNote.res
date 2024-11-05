@@ -1,3 +1,4 @@
+open SettingStore
 open Icon
 
 module NoteItem = {
@@ -7,7 +8,7 @@ module NoteItem = {
     <div className={`card card-compact ${bg} w-full relative overflow-hidden shrink-0`}>
       {isSelected
         ? <div className="absolute inset-0 h-full w-2 bg-primary" />
-        : <div className="absolute bottom-0 left-[5%] h-[1px] w-[90%] bg-base-content/50" />}
+        : <div className="absolute bottom-0 left-[5%] h-[1px] w-[90%] bg-base-content/10" />}
       <div className="card-body">
         <h2 className="card-title"> {"Card title"->React.string} </h2>
         <p> {"If a dog chews shoes whose shoes does he choose?"->React.string} </p>
@@ -21,8 +22,19 @@ module NoteItem = {
 
 @react.component
 let make = () => {
-  <div className="flex flex-col gap-2 p-2 border-r border-base-content/50 h-full">
+  let {settings, toggleSidebar} = SettingStore.use()
+  let onClick = _ => toggleSidebar()
+
+  <div className="flex flex-col gap-2 px-4 pt-0 border-r border-base-content/20 h-full">
     <div className="flex flex-row gap-1 my-2 items-center">
+      {settings.sidebar
+        ? React.null
+        : <button
+            onClick
+            ariaLabel="open-sidebar"
+            className="btn btn-ghost btn-square resp-btn animate-grow">
+            <Icon.menu className="resp-icon" />
+          </button>}
       <p className="card-title"> {"Notes"->React.string} </p>
       <div className="grow" />
       <button ariaLabel="add-note" className="btn btn-ghost btn-square resp-btn">

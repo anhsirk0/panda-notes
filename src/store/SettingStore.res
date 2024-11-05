@@ -1,7 +1,7 @@
 open Zustand
 
 module StoreData = {
-  type settings = {theme: string, name: string, sidebar: bool}
+  type settings = {theme: string, title: string, sidebar: bool}
   type state = {
     settings: settings,
     update: settings => unit,
@@ -10,7 +10,7 @@ module StoreData = {
 
   let defaultSettings = {
     theme: "cupcake",
-    name: "Your",
+    title: "Panda Notes",
     sidebar: true,
   }
 }

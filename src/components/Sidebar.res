@@ -1,28 +1,19 @@
 open SettingStore
+open NoteStore
 open Icon
-
-module ToggleSidebarButton = {
-  @react.component
-  let make = () => {
-    let {settings, toggleSidebar} = SettingStore.use()
-
-    let onClick = _ => toggleSidebar()
-    let ariaLabel = settings.sidebar ? "close-sidebar" : "open-sidebar"
-    let btnType = settings.sidebar ? "btn-ghost" : "btn-neutral"
-    let className = "resp-icon text-neutral-content"
-
-    <button onClick ariaLabel className={`btn ${btnType} btn-square resp-btn animate-grow`}>
-      {settings.sidebar ? <Icon.arrowLineLeft className /> : <Icon.arrowLineRight className />}
-    </button>
-  }
-}
 
 @react.component
 let make = () => {
-  let {settings} = SettingStore.use()
+  let {settings, toggleSidebar} = SettingStore.use()
+  let {library} = NoteStore.use()
+  let onClick = _ => toggleSidebar()
 
   let left = settings.sidebar ? "-left-56" : "-left-[34rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
+
+  let collections = library->Array.map(col => {
+    <div key=col.title className="flex flex-row"> {col.title->React.string} </div>
+  })
 
   <React.Fragment>
     <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
@@ -34,23 +25,33 @@ let make = () => {
         <ThemesList />
       </ul>
       <div
-        id="sidebar" className="w-72 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral">
+        id="sidebar"
+        className="w-72 p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
+        <div className="flex flex-row gap-2 items-center justify-between">
+          <p className="card-title"> {settings.title->React.string} </p>
+          <button ariaLabel="settings-btn" className="btn btn-ghost btn-square resp-btn">
+            <Icon.sliders className="resp-icon rotate-90" />
+          </button>
+        </div>
+        {React.array(collections)}
         <div className="grow" />
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row items-center">
+          <button ariaLabel="add-collection-btn" className="btn btn-neutral resp-btn">
+            <Icon.listPlus className="resp-icon" />
+            {"New collection"->React.string}
+          </button>
+          <div className="grow" />
           <button
             ariaLabel="select-theme-btn"
             id="theme-btn"
             className="btn btn-ghost btn-square resp-btn">
-            <Icon.palette className="resp-icon text-neutral-content" />
+            <Icon.palette className="resp-icon" />
           </button>
-          <ToggleSidebarButton />
+          <button onClick ariaLabel="close-sidebar" className="btn btn-ghost btn-square resp-btn">
+            <Icon.arrowLineLeft className="resp-icon" />
+          </button>
         </div>
       </div>
     </div>
-    {settings.sidebar
-      ? React.null
-      : <div className="fixed bottom-2 left-2 z-[5]">
-          <ToggleSidebarButton />
-        </div>}
   </React.Fragment>
 }
