@@ -10,7 +10,7 @@ module Collection = {
   let defaultCollections: array<t> = [
     {
       id: 0,
-      title: "Notes",
+      title: "My Notes",
       notes: [
         {
           id: 0,

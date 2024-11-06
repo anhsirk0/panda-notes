@@ -1,23 +1,33 @@
 open NoteStore
-open Collection
-open Icon
 
 module Item = {
   @react.component
-  let make = (~item: Collection.t, ~isSelected=false, ~isCollapsed=false) => {
-    let bg = isSelected ? "bg-neutral text-neutral-content" : ""
-    let className = `flex flex-row p-2 gap-2 ${bg} rounded-box relative isolate overflow-hidden items-center`
-    <div className>
-      {isSelected ? <div className="absolute inset-0 bg-neutral-content/20 -z-[1]" /> : React.null}
-      <Icon.caretRight className={`size-4 stroke-2 ${isCollapsed ? "" : "rotate-90"}`} />
-      {item.title->React.string}
-    </div>
+  let make = (~title, ~isSelected=false, ~onClick) => {
+    let bg = isSelected ? "bg-neutral-content/20 text-neutral-content font-medium" : ""
+    let className = `flex flex-row p-2 px-4 gap-2 ${bg} rounded-box relative isolate overflow-hidden items-center cursor-pointer hover:bg-neutral-content/25`
+    <div role="button" className onClick> {title->React.string} </div>
   }
 }
 
 @react.component
-let make = () => {
+let make = (~collectionId, ~setCollectionId) => {
   let {library} = NoteStore.use()
-  let collections = library->Array.map(item => <Item key=item.title item isSelected=true />)
-  React.array(collections)
+  let collections = library->Array.map(item => {
+    let onClick = _ => setCollectionId(_ => Some(item.id))
+    <Item
+      key=item.title
+      title=item.title
+      onClick
+      isSelected={collectionId->Option.filter(id => id == item.id)->Option.isSome}
+    />
+  })
+
+  <React.Fragment>
+    <Item
+      title="Notes"
+      isSelected={collectionId->Option.isNone}
+      onClick={_ => setCollectionId(_ => None)}
+    />
+    {React.array(collections)}
+  </React.Fragment>
 }

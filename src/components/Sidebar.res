@@ -2,7 +2,7 @@ open SettingStore
 open Icon
 
 @react.component
-let make = () => {
+let make = (~collectionId, ~setCollectionId) => {
   let {settings, toggleSidebar} = SettingStore.use()
   let onClick = _ => toggleSidebar()
 
@@ -15,13 +15,13 @@ let make = () => {
       <div
         id="sidebar"
         className="w-[14rem] xxl:w-[18rem] p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
-        <div className="flex flex-row gap-2 items-center justify-between">
+        <div className="flex flex-row gap-1 items-center justify-between">
           <p className="card-title"> {settings.title->React.string} </p>
           <button ariaLabel="settings-btn" className="btn btn-neutral btn-square resp-btn">
             <Icon.sliders className="resp-icon rotate-90" />
           </button>
         </div>
-        <SelectCollection />
+        <SelectCollection collectionId setCollectionId />
         <div className="grow" />
         <div className="flex flex-row items-center">
           <button ariaLabel="add-collection-btn" className="btn btn-neutral resp-btn">
