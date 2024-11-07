@@ -18,7 +18,7 @@ let make = () => {
     ->Option.getOr(library)
 
   let key = tag->Option.map(tag => tag.id->Int.toString)->Option.getOr("None")
-  let leftP = settings.sidebar ? "pl-[18rem]" : "pl-0"
+  let leftP = settings.sidebar ? "pl-[14rem] xxl:pl-[18rem]" : "pl-0"
 
   <React.Fragment>
     <Sidebar>

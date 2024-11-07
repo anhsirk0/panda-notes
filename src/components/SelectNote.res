@@ -5,13 +5,14 @@ open Icon
 
 module NoteItem = {
   @react.component
-  let make = (~note: Note.t, ~onClick, ~isSelected=false) => {
-    let bg = isSelected ? "bg-base-200/70" : ""
-    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer hover:bg-base-200/60 animate-slide`
-    <div className onClick>
-      {isSelected
-        ? <div className="absolute inset-0 h-full w-2 bg-primary" />
-        : <div className="absolute bottom-0 left-[5%] h-[1px] w-[90%] bg-base-content/10" />}
+  let make = (~note: Note.t, ~onClick, ~isSelected, ~showDivider) => {
+    let bg = isSelected ? "bg-base-200/50" : ""
+    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide`
+    <li className onClick>
+      {isSelected ? <div className="absolute inset-0 h-full w-2 bg-primary" /> : React.null}
+      {showDivider
+        ? <div className="absolute top-0 left-[7%] h-[1px] w-[86%] bg-base-content/10" />
+        : React.null}
       <div className="card-body">
         <h2 className="card-title"> {note.title->React.string} </h2>
         <p> {note.content->String.substring(~start=0, ~end=100)->React.string} </p>
@@ -19,7 +20,7 @@ module NoteItem = {
           <button className="btn"> {"Buy Now"->React.string} </button>
         </div>
       </div>
-    </div>
+    </li>
   }
 }
 
@@ -28,12 +29,15 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~tag: option<Tag.t>) => 
   let {settings, toggleSidebar} = SettingStore.use()
   let onClick = _ => toggleSidebar()
 
+  let noteIdx = noteId->Option.map(id => notes->Array.findIndex(n => n.id == id))->Option.getOr(-1)
+
   let noteItems = notes->Array.mapWithIndex((note, idx) => {
     let onClick = _ => setNoteId(_ => Some(note.id))
+    let isSelected = noteId->Option.filter(id => id == note.id)->Option.isSome
+    let showDivider = !(isSelected || idx == noteIdx + 1)
+
     <Delay key={note.id->Int.toString} timeout={idx * 80}>
-      <NoteItem
-        isSelected={noteId->Option.filter(id => id == note.id)->Option.isSome} note onClick
-      />
+      <NoteItem isSelected note onClick showDivider />
     </Delay>
   })
 
@@ -58,9 +62,9 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~tag: option<Tag.t>) => 
         <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </div>
-    <div className="flex flex-col gap-2 min-h-0 grow overflow-y-auto w-96">
+    <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-96">
       {React.array(noteItems)}
-    </div>
+    </ul>
     {notes->Array.length > 0
       ? React.null
       : <div className="center size-full"> {"No notes"->React.string} </div>}
