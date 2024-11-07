@@ -2,7 +2,7 @@ open SettingStore
 open Icon
 
 @react.component
-let make = (~collectionId, ~setCollectionId) => {
+let make = (~children) => {
   let {settings, toggleSidebar} = SettingStore.use()
   let onClick = _ => toggleSidebar()
 
@@ -21,7 +21,7 @@ let make = (~collectionId, ~setCollectionId) => {
             <Icon.sliders className="resp-icon rotate-90" />
           </button>
         </div>
-        <SelectCollection collectionId setCollectionId />
+        {children}
         <div className="grow" />
         <div className="flex flex-row items-center">
           <button ariaLabel="add-collection-btn" className="btn btn-neutral resp-btn">

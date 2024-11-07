@@ -7,7 +7,7 @@ module NoteItem = {
   @react.component
   let make = (~note: Note.t, ~onClick, ~isSelected=false) => {
     let bg = isSelected ? "bg-base-200/70" : ""
-    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer hover:bg-base-200/60`
+    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer hover:bg-base-200/60 animate-slide`
     <div className onClick>
       {isSelected
         ? <div className="absolute inset-0 h-full w-2 bg-primary" />
@@ -34,15 +34,16 @@ let make = (~collectionId, ~noteId, ~setNoteId) => {
     ->Option.flatMap(id => library->Array.find(col => col.id == id))
     ->Option.map(col => col.notes)
     ->Option.getOr(library->Array.flatMap(col => col.notes))
-    ->Array.map(note => {
+    ->Array.mapWithIndex((note, idx) => {
       let onClick = _ => setNoteId(_ => Some(note.id))
-      <NoteItem
-        key={note.id->Int.toString}
-        isSelected={noteId->Option.filter(id => id == note.id)->Option.isSome}
-        note
-        onClick
-      />
+      <Delay key={note.id->Int.toString} timeout={idx * 80}>
+        <NoteItem
+          isSelected={noteId->Option.filter(id => id == note.id)->Option.isSome} note onClick
+        />
+      </Delay>
     })
+
+  let key = collectionId->Option.map(id => id->Int.toString)->Option.getOr("None")
 
   <div className="flex flex-col gap-2 px-4 pt-0 border-r border-base-content/20 h-full">
     <div className="flex flex-row gap-1 my-2 items-center">
@@ -63,6 +64,8 @@ let make = (~collectionId, ~noteId, ~setNoteId) => {
         <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </div>
-    <div className="flex flex-col gap-2 min-h-0 overflow-y-auto w-96"> {React.array(notes)} </div>
+    <div key className="flex flex-col gap-2 min-h-0 grow overflow-y-auto w-96">
+      {React.array(notes)}
+    </div>
   </div>
 }

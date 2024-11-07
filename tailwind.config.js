@@ -14,6 +14,10 @@ export default {
       xxl: "1536px",
     },
     keyframes: {
+      slide: {
+        "0%": { opacity: 0, transform: "translateY(80px)" },
+        "100%": { opacity: 1, transform: "translateY(0)" },
+      },
       shake: {
         "25%": { transform: "rotate(-4deg)" },
         "75%": { transform: "rotate(4deg)" },
@@ -32,6 +36,7 @@ export default {
       shake: "shake 200ms ease-in-out infinite",
       grow: "grow 400ms ease-in-out",
       fade: "fade 200ms ease-in-out",
+      slide: "slide 200ms ease-in-out",
     },
     fontFamily: {
       sans: ["Eurostile", "Open Sans"],

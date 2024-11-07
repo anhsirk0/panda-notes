@@ -8,7 +8,9 @@ let make = () => {
   let leftP = settings.sidebar ? "pl-[18rem]" : "pl-0"
 
   <React.Fragment>
-    <Sidebar collectionId setCollectionId />
+    <Sidebar>
+      <SelectCollection collectionId setCollectionId setNoteId />
+    </Sidebar>
     <div className={`flex flex-row transitional ${leftP} h-full`}>
       <SelectNote collectionId noteId setNoteId />
       <div className="text-7xl p-8">

@@ -10,10 +10,13 @@ module Item = {
 }
 
 @react.component
-let make = (~collectionId, ~setCollectionId) => {
+let make = (~collectionId, ~setCollectionId, ~setNoteId) => {
   let {library} = NoteStore.use()
   let collections = library->Array.map(item => {
-    let onClick = _ => setCollectionId(_ => Some(item.id))
+    let onClick = _ => {
+      setCollectionId(_ => Some(item.id))
+      setNoteId(_ => None)
+    }
     <Item
       key=item.title
       title=item.title
