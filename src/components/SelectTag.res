@@ -1,4 +1,5 @@
 open NoteStore
+open Tag
 
 module Item = {
   @react.component
@@ -10,27 +11,27 @@ module Item = {
 }
 
 @react.component
-let make = (~collectionId, ~setCollectionId, ~setNoteId) => {
+let make = (~tag: option<Tag.t>, ~setTag, ~setNoteId) => {
   let {library} = NoteStore.use()
-  let collections = library->Array.map(item => {
+  let tags = library->Array.reduce([], (acc: array<Tag.t>, item) => {
+    acc->Array.concat(item.tags->Array.filter(tg => !(acc->Array.some(t => t.id == tg.id))))
+  })
+
+  let tagItems = tags->Array.map(item => {
     let onClick = _ => {
-      setCollectionId(_ => Some(item.id))
+      setTag(_ => Some(item))
       setNoteId(_ => None)
     }
     <Item
       key=item.title
       title=item.title
       onClick
-      isSelected={collectionId->Option.filter(id => id == item.id)->Option.isSome}
+      isSelected={tag->Option.filter(tag => tag.id == item.id)->Option.isSome}
     />
   })
 
   <React.Fragment>
-    <Item
-      title="Notes"
-      isSelected={collectionId->Option.isNone}
-      onClick={_ => setCollectionId(_ => None)}
-    />
-    {React.array(collections)}
+    <Item title="Notes" isSelected={tag->Option.isNone} onClick={_ => setTag(_ => None)} />
+    {React.array(tagItems)}
   </React.Fragment>
 }

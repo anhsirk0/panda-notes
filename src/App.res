@@ -1,21 +1,32 @@
 open SettingStore
+open NoteStore
+open Tag
 
 @react.component
 let make = () => {
   let {settings} = SettingStore.use()
-  let (collectionId, setCollectionId) = React.useState(_ => None)
+  let {library} = NoteStore.use()
+
+  let (tag, setTag) = React.useState(_ => None)
   let (noteId, setNoteId) = React.useState(_ => None)
+
+  let notes =
+    tag
+    ->Option.map((tag: Tag.t) =>
+      library->Array.filter(note => note.tags->Array.some(t => t.id == tag.id))
+    )
+    ->Option.getOr(library)
+
+  let key = tag->Option.map(tag => tag.id->Int.toString)->Option.getOr("None")
   let leftP = settings.sidebar ? "pl-[18rem]" : "pl-0"
 
   <React.Fragment>
     <Sidebar>
-      <SelectCollection collectionId setCollectionId setNoteId />
+      <SelectTag tag setTag setNoteId />
     </Sidebar>
-    <div className={`flex flex-row transitional ${leftP} h-full`}>
-      <SelectNote collectionId noteId setNoteId />
-      <div className="text-7xl p-8">
-        {"Praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst quisque sagittis, purus sit amet volutpat consequat. Sapien nec sagittis aliquam malesuada bibendum arcu."->React.string}
-      </div>
+    <div className={`flex flex-row transitional ${leftP} size-full`}>
+      <SelectNote notes noteId setNoteId tag key />
+      <ViewNote notes noteId />
     </div>
   </React.Fragment>
 }

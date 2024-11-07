@@ -24,10 +24,6 @@ let make = (~children) => {
         {children}
         <div className="grow" />
         <div className="flex flex-row items-center">
-          <button ariaLabel="add-collection-btn" className="btn btn-neutral resp-btn">
-            <Icon.listPlus className="resp-icon" />
-            {"New collection"->React.string}
-          </button>
           <div className="grow" />
           <button
             ariaLabel="select-theme-btn"

@@ -1,14 +1,13 @@
 open Zustand
-open Collection
+open Library
 
 module StoreData = {
-  type library = array<Collection.t>
   type state = {
-    library: library,
-    update: library => unit,
+    library: Library.t,
+    update: Library.t => unit,
   }
 
-  let defaultState = Collection.defaultCollections
+  let defaultState = Library.defaultNotes
 }
 
 module AppStore = Zustand.MakeStore(StoreData)

@@ -9,5 +9,5 @@ module Icon = {
   @module("@phosphor-icons/react") external magnifyingGlass: t = "MagnifyingGlass"
   @module("@phosphor-icons/react") external sliders: t = "Sliders"
   @module("@phosphor-icons/react") external menu: t = "List"
-  @module("@phosphor-icons/react") external listPlus: t = "ListPlus"
+  // @module("@phosphor-icons/react") external listPlus: t = "ListPlus"
 }
