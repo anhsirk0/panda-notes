@@ -7,7 +7,7 @@ module Library = {
     {
       id: 20,
       title: "First Note",
-      content: "content of the 1st note",
+      content: "# content of the 1st note\n## h2\n - [ ] First\n - [X] Second\n - [ ] Third\n",
       createdAd: 0,
       updatedAd: 0,
       tags: [],

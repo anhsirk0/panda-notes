@@ -7,18 +7,18 @@ module NoteItem = {
   @react.component
   let make = (~note: Note.t, ~onClick, ~isSelected, ~showDivider) => {
     let bg = isSelected ? "bg-base-200/50" : ""
-    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide`
+    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide h-40`
     <li className onClick>
       {isSelected ? <div className="absolute inset-0 h-full w-2 bg-primary" /> : React.null}
       {showDivider
         ? <div className="absolute top-0 left-[7%] h-[1px] w-[86%] bg-base-content/10" />
         : React.null}
-      <div className="card-body">
-        <h2 className="card-title"> {note.title->React.string} </h2>
-        <p> {note.content->String.substring(~start=0, ~end=100)->React.string} </p>
-        <div className="card-actions justify-end">
-          <button className="btn"> {"Buy Now"->React.string} </button>
-        </div>
+      <div className="card-body !py-2">
+        <h2 className="card-title resp-title"> {note.title->React.string} </h2>
+        <pre className="line-clamp-4">
+          {note.content->String.substring(~start=0, ~end=100)->React.string}
+        </pre>
+        <div className="card-actions justify-end" />
       </div>
     </li>
   }
@@ -29,7 +29,7 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~tag: option<Tag.t>) => 
   let {settings, toggleSidebar} = SettingStore.use()
   let onClick = _ => toggleSidebar()
 
-  let noteIdx = noteId->Option.map(id => notes->Array.findIndex(n => n.id == id))->Option.getOr(-1)
+  let noteIdx = noteId->Option.map(id => notes->Array.findIndex(n => n.id == id))->Option.getOr(-2)
 
   let noteItems = notes->Array.mapWithIndex((note, idx) => {
     let onClick = _ => setNoteId(_ => Some(note.id))
@@ -62,7 +62,7 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~tag: option<Tag.t>) => 
         <Icon.magnifyingGlass className="resp-icon" />
       </button>
     </div>
-    <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-96">
+    <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-64 xxl:w-72">
       {React.array(noteItems)}
     </ul>
     {notes->Array.length > 0
