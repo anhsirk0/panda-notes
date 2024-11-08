@@ -7,7 +7,7 @@ module NoteItem = {
   @react.component
   let make = (~note: Note.t, ~onClick, ~isSelected, ~showDivider) => {
     let bg = isSelected ? "bg-base-200/50" : ""
-    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide h-40`
+    let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide`
     <li className onClick>
       {isSelected ? <div className="absolute inset-0 h-full w-2 bg-primary" /> : React.null}
       {showDivider
@@ -15,10 +15,12 @@ module NoteItem = {
         : React.null}
       <div className="card-body !py-2">
         <h2 className="card-title resp-title"> {note.title->React.string} </h2>
-        <pre className="line-clamp-3 text-wrap">
+        <pre className="line-clamp-3 text-wrap grow -mt-2">
           {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>
-        <div className="card-actions justify-end" />
+        <div className="card-actions text-sm text-base-content/80">
+          {note.updatedAt->Js.Date.fromFloat->Date.toDateString->React.string}
+        </div>
       </div>
     </li>
   }
