@@ -4,6 +4,7 @@ module MDEditor = {
     onChange: (string => string) => unit,
     height: string,
     preview: string,
+    // renderTextarea: JsxDOM.domProps => Jsx.element,
   }
   type t = React.component<props>
 

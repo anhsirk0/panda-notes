@@ -15,8 +15,8 @@ module NoteItem = {
         : React.null}
       <div className="card-body !py-2">
         <h2 className="card-title resp-title"> {note.title->React.string} </h2>
-        <pre className="line-clamp-4">
-          {note.content->String.substring(~start=0, ~end=100)->React.string}
+        <pre className="line-clamp-3 text-wrap">
+          {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>
         <div className="card-actions justify-end" />
       </div>
@@ -34,7 +34,7 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~tag: option<Tag.t>) => 
   let noteItems = notes->Array.mapWithIndex((note, idx) => {
     let onClick = _ => setNoteId(_ => Some(note.id))
     let isSelected = noteId->Option.filter(id => id == note.id)->Option.isSome
-    let showDivider = !(isSelected || idx == noteIdx + 1)
+    let showDivider = !(isSelected || idx == noteIdx + 1 || idx == 0)
 
     <Delay key={note.id->Int.toString} timeout={idx * 80}>
       <NoteItem isSelected note onClick showDivider />

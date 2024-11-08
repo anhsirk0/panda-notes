@@ -5,8 +5,8 @@ module Note = {
     id: int,
     title: string,
     content: string,
-    createdAd: int,
-    updatedAd: int,
+    createdAt: float,
+    updatedAt: float,
     tags: array<Tag.t>,
   }
 }

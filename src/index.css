@@ -106,6 +106,10 @@
   @apply !border-b-base-content/20 ;
 }
 
+.w-md-editor-text {
+  @apply !h-full;
+}
+
 .w-md-editor-text-input {
   @apply !text-base-content;
 }
