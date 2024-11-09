@@ -13,7 +13,7 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
     setValue(fn)
     if isDebounced {
       setIsDebounced(_ => false)
-      let _ = setTimeout(_ => setIsDebounced(_ => true), 400)
+      let _ = setTimeout(_ => setIsDebounced(_ => true), 800)
     }
   }
 
@@ -25,7 +25,6 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
       ->Option.getOr({id: Date.now()->Float.toInt, title: tagTitle})
     updateNote({...note, tags: note.tags->Array.concat([tag]), updatedAt: Date.now()})
   }
-
   let onDeleteTag = tag => {
     updateNote({
       ...note,
@@ -45,7 +44,9 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
     <NoteTitle title=note.title onSaveTitle />
     <NoteTags noteTags=note.tags onAddTag onDeleteTag />
     <div className="border-t border-base-content/20 size-full min-h-0 grow">
-      <MDEditor.editor onChange value height="100%" preview="preview" />
+      <MDEditor.editor
+        onChange value height="100%" preview={note.content->String.length > 0 ? "preview" : "edit"}
+      />
     </div>
   </div>
 }
