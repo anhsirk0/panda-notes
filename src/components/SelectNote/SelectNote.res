@@ -15,10 +15,8 @@ module NoteItem = {
         ? <div className="absolute top-0 left-[7%] h-[1px] w-[86%] bg-base-content/10" />
         : React.null}
       <div className="card-body !py-2 group">
-        <div className="flex flex-row gap-2 justify-between">
-          <h2 className="card-title resp-title"> {note.title->React.string} </h2>
-          <DeleteNoteButton note />
-        </div>
+        <DeleteNoteButton note />
+        <h2 className="card-title resp-title"> {note.title->React.string} </h2>
         <pre className="line-clamp-3 text-wrap grow -mt-2">
           {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>

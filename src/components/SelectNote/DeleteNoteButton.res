@@ -15,8 +15,10 @@ let make = (~note: Note.t) => {
   let {deleteNote} = NoteStore.use()
 
   <React.Fragment>
-    <button onClick className="btn btn-sm btn-circle btn-ghost -mr-2 hidden group-hover:flex">
-      <Icon.trash className="text-xl text-error" />
+    <button
+      onClick
+      className="btn btn-sm btn-circle btn-ghost -mr-2 hidden group-hover:flex absolute top-1 right-3">
+      <Icon.trash className="text-xl text-error animate-fade" />
     </button>
     {isOpen
       ? <Modal title="Delete note" onClose=toggleOpen>

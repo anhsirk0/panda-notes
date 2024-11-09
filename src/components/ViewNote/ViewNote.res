@@ -44,9 +44,7 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
     <NoteTitle title=note.title onSaveTitle />
     <NoteTags noteTags=note.tags onAddTag onDeleteTag />
     <div className="border-t border-base-content/20 size-full min-h-0 grow">
-      <MDEditor.editor
-        onChange value height="100%" preview={note.content->String.length > 0 ? "preview" : "edit"}
-      />
+      <MDEditor.editor onChange value height="100%" preview="preview" />
     </div>
   </div>
 }
