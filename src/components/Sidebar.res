@@ -2,12 +2,13 @@ open SettingStore
 open Icon
 
 @react.component
-let make = (~children) => {
+let make = (~count, ~children) => {
   let {settings, toggleSidebar} = SettingStore.use()
   let onClick = _ => toggleSidebar()
 
   let left = settings.sidebar ? "-left-[12rem]" : "-left-[28rem] xxl:-left-[32rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
+  let countLabel = count->Int.toString ++ " Note" ++ (count == 1 ? "" : "s")
 
   <React.Fragment>
     <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
@@ -24,6 +25,7 @@ let make = (~children) => {
         {children}
         <div className="grow" />
         <div className="flex flex-row items-center">
+          <p className="text-neutral-content"> {countLabel->React.string} </p>
           <div className="grow" />
           <button
             ariaLabel="select-theme-btn"

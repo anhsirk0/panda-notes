@@ -7,7 +7,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
 
   let onClick = _ => onClose()
   let onKeyDown = evt => {
-    evt->Keyboard.stopPropagation
+    // evt->Keyboard.stopPropagation
     if Keyboard.key(evt) == "Escape" {
       onClose()
     }
@@ -18,12 +18,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
     None
   })
 
-  <div
-    onContextMenu=Mouse.stopPropagation
-    onWheel=Wheel.stopPropagation
-    onClick
-    onKeyDown
-    className="modal modal-open modal-bottom sm:modal-middle">
+  <div onClick onKeyDown className="modal modal-open modal-bottom sm:modal-middle">
     <div className onClick=Mouse.stopPropagation>
       <div className="flex flex-row items-center justify-between mb-4 -mt-1">
         <p className="font-bold text-lg"> {React.string(title)} </p>

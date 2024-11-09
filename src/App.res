@@ -24,7 +24,7 @@ let make = () => {
   let leftP = settings.sidebar ? "pl-[12rem] xxl:pl-[16rem]" : "pl-0"
 
   <React.Fragment>
-    <Sidebar>
+    <Sidebar count={notes->Array.length}>
       <SelectTag tag setTag tags setNoteId />
     </Sidebar>
     <div className={`flex flex-row transitional ${leftP} size-full`}>
