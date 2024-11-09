@@ -30,7 +30,6 @@
   @apply size-4 lg:size-6 xxl:size-7;
 }
 
-
 .wmde-markdown,
 .wmde-markdown-var {
   @apply !bg-base-100 !border-base-content/20;

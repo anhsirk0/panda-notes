@@ -5,7 +5,10 @@ open ReactEvent
 let make = (~title, ~onClose, ~children, ~classes=?) => {
   let className = "modal-box flex flex-col max-h-[94vh] min-w-[36vw] " ++ classes->Option.getOr("")
 
-  let onClick = _ => onClose()
+  let onClick = evt => {
+    evt->Mouse.stopPropagation
+    onClose()
+  }
   let onKeyDown = evt => {
     // evt->Keyboard.stopPropagation
     if Keyboard.key(evt) == "Escape" {

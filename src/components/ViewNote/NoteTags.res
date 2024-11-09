@@ -11,7 +11,7 @@ let make = (~noteTags: array<Tag.t>, ~onAddTag, ~onDeleteTag) => {
     <div key={tag.id->Int.toString} className="badge badge-neutral badge-lg">
       {tag.title->React.string}
       <button type_="button" onClick className="btn btn-xs btn-ghost btn-circle ml-1 -mr-2.5">
-        <Icon.x className="text-base" />
+        <Icon.x className="text-base text-neutral-content/80" />
       </button>
     </div>
   })

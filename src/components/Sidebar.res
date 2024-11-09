@@ -14,8 +14,7 @@ let make = (~count, ~children) => {
     <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
       <ThemesList />
       <div
-        id="sidebar"
-        className="w-[12rem] xxl:w-[16rem] p-1 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
+        className="w-[12rem] xxl:w-[16rem] p-2 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
         <div className="flex flex-row gap-1 items-center justify-between">
           <p className="card-title"> {settings.title->React.string} </p>
           <button ariaLabel="settings-btn" className="btn btn-neutral btn-square resp-btn">
