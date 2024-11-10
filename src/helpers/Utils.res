@@ -35,6 +35,7 @@ module Utils = {
   }
 
   let startsWith = (str, terms) => Array.some(terms, s => String.startsWith(str, s))
+  let strContains = (s1, s2) => s1->String.toLowerCase->String.includes(s2->String.toLowerCase)
 
   let moveLeft = (arr: array<'a>, index: int) => {
     if index == 0 {

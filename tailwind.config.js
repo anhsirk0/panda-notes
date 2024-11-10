@@ -27,10 +27,7 @@ export default {
         "0%": { transform: "scale(0)" },
         "100%": { transform: "scale(1)" },
       },
-      fade: {
-        "0%": { opacity: 0 },
-        "100%": { opacity: 1 },
-      },
+      fade: { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
     },
     animation: {
       shake: "shake 200ms ease-in-out infinite",
@@ -47,7 +44,7 @@ export default {
   plugins: [require("daisyui")],
   daisyui: {
     themes,
-    darkTheme: "dark", // name of one of the included themes for dark mode
+    darkTheme: "business", // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes

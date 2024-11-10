@@ -9,7 +9,7 @@ module StoreData = {
   }
 
   let defaultSettings = {
-    theme: "cupcake",
+    theme: "corporate",
     title: "Panda Notes",
     sidebar: true,
   }

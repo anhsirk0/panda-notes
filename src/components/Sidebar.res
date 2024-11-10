@@ -3,8 +3,7 @@ open Icon
 
 @react.component
 let make = (~count, ~children) => {
-  let {settings, toggleSidebar} = SettingStore.use()
-  let onClick = _ => toggleSidebar()
+  let {settings} = SettingStore.use()
 
   let left = settings.sidebar ? "-left-[12rem]" : "-left-[28rem] xxl:-left-[32rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
@@ -32,9 +31,7 @@ let make = (~count, ~children) => {
             className="btn btn-neutral btn-square resp-btn">
             <Icon.palette className="resp-icon" />
           </button>
-          <button onClick ariaLabel="close-sidebar" className="btn btn-neutral btn-square resp-btn">
-            <Icon.arrowLineLeft className="resp-icon" />
-          </button>
+          <ToggleSidebarButton />
         </div>
       </div>
     </div>
