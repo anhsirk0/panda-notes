@@ -5,7 +5,7 @@ open Icon
 let make = (~count, ~children) => {
   let {settings} = SettingStore.use()
 
-  let left = settings.sidebar ? "-left-[12rem]" : "-left-[28rem] xxl:-left-[32rem]"
+  let left = settings.sidebar ? "-left-[13rem]" : "-left-[29rem] xxl:-left-[33rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
   let countLabel = count->Int.toString ++ " Note" ++ (count == 1 ? "" : "s")
 

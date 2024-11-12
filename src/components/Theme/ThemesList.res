@@ -25,7 +25,7 @@ let make = () => {
   <ul
     id="theme-container"
     tabIndex=0
-    className="flex flex-col gap-2 w-[12rem] p-2 min-h-0 overflow-y-auto bg-secondary">
+    className="flex flex-col gap-2 w-[13rem] p-2 min-h-0 overflow-y-auto bg-secondary">
     {React.array(themeCards)}
   </ul>
 }
