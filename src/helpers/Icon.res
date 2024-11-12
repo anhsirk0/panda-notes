@@ -11,4 +11,6 @@ module Icon = {
   @module("@phosphor-icons/react") external menu: t = "List"
   @module("@phosphor-icons/react") external x: t = "X"
   @module("@phosphor-icons/react") external trash: t = "Trash"
+  @module("@phosphor-icons/react") external notepad: t = "Notepad"
+  @module("@phosphor-icons/react") external hash: t = "Hash"
 }
