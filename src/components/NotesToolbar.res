@@ -10,7 +10,10 @@ let make = (~tag: option<Tag.t>, ~setNoteId, ~query, ~setQuery) => {
   let {settings} = SettingStore.use()
 
   let (isSearching, setIsSearching) = React.useState(_ => false)
-  let toggleSearching = _ => setIsSearching(val => !val)
+  let toggleSearching = _ => {
+    setIsSearching(val => !val)
+    setQuery(_ => "")
+  }
   let onChange = evt => {
     let target = ReactEvent.Form.target(evt)
     let newValue: string = target["value"]
