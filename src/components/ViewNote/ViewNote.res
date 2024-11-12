@@ -1,4 +1,5 @@
 open Note
+open Utils
 open Tag
 open MDEditor
 open NoteStore
@@ -39,6 +40,13 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
     }
     None
   }, [isDebounced])
+
+  React.useEffect0(() => {
+    if value->String.length < 1 {
+      "button[data-name=edit]"->Utils.querySelectAndThen(Utils.click)
+    }
+    None
+  })
 
   <div className="flex flex-col grow px-4 py-2">
     <NoteTitle title=note.title onSaveTitle />

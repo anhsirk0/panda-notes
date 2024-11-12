@@ -83,9 +83,9 @@
   @apply !bg-base-100 !shadow-none;
 }
 
-.w-md-editor-content {
-  @apply !border-base-content/20 border-b border-t;
-}
+/* .w-md-editor-content { */
+/*   @apply !border-base-content/20 border-b border-t; */
+/* } */
 
 .w-md-editor-preview {
   @apply !px-0;
@@ -110,5 +110,5 @@
 }
 
 textarea {
-  @apply !h-full;  
+  @apply !h-full !outline-none;
 }
