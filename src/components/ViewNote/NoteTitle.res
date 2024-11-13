@@ -19,9 +19,9 @@ let make = (~title, ~onSaveTitle) => {
     onSave()
   }
 
-  <form onSubmit className="flex flex-row w-full">
+  <form onSubmit className="flex flex-row w-fit -mt-2">
     <InputBase
-      className="text-primary text-4xl font-bold bg-transparent outline-none items-center"
+      className="text-primary text-3xl xxl:text-4xl font-bold bg-transparent items-center h-14 outline-none"
       value
       onChange
       onBlur={_ => onSave()}

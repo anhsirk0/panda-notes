@@ -1,4 +1,5 @@
 import { themes } from "./src/Themes.res.mjs";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -41,7 +42,7 @@ export default {
       display: ["Eurostile"],
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
   daisyui: {
     themes,
     darkTheme: "business", // name of one of the included themes for dark mode
