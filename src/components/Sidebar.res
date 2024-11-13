@@ -14,10 +14,10 @@ let make = (~count, ~children) => {
       <ThemesList />
       <div
         className="w-[12rem] xxl:w-[16rem] p-2 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
-        <div className="flex flex-row gap-1 items-center justify-between">
+        <div className="flex flex-row gap-1 items-center justify-between h-9 xxl:h-12">
           <p className="card-title"> {settings.title->React.string} </p>
           // <button ariaLabel="settings-btn" className="btn btn-neutral btn-square resp-btn">
-          //   <Icon.sliders className="resp-icon rotate-90" />
+          //   <Icon.x className="resp-icon rotate-90" />
           // </button>
         </div>
         {children}

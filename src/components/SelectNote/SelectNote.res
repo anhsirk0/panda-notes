@@ -40,7 +40,7 @@ let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~children) => {
     </Delay>
   })
 
-  <div className="flex flex-col gap-2 px-4 pt-0 border-r border-base-content/20 h-full">
+  <div className="flex flex-col px-4 pt-0 border-r border-base-content/20 h-full">
     {children}
     <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-64 xxl:w-72">
       {React.array(noteItems)}
