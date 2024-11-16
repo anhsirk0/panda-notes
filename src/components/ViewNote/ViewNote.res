@@ -1,5 +1,3 @@
-open MDEditor
-
 @react.component
 let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
   let {updateNote} = Store.Notes.use()
