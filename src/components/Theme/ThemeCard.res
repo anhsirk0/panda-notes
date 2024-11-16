@@ -1,6 +1,3 @@
-open SettingStore
-open Utils
-
 module MyOverrides = {
   module Elements = {
     type props = {
@@ -24,7 +21,7 @@ module MyOverrides = {
 
 @react.component
 let make = (~theme, ~children) => {
-  let {settings, update} = SettingStore.use()
+  let {settings, update} = Store.Settings.use()
 
   let onClick = _ => {
     theme->Utils.setTheme

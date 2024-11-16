@@ -1,12 +1,8 @@
-open Note
-open Utils
-open Tag
 open MDEditor
-open NoteStore
 
 @react.component
-let make = (~note: Note.t, ~tags: array<Tag.t>) => {
-  let {updateNote} = NoteStore.use()
+let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
+  let {updateNote} = Store.Notes.use()
   let (value, setValue) = React.useState(_ => note.content)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
 
@@ -29,7 +25,7 @@ let make = (~note: Note.t, ~tags: array<Tag.t>) => {
   let onDeleteTag = tag => {
     updateNote({
       ...note,
-      tags: note.tags->Array.filter(t => !Tag.eq(t, tag)),
+      tags: note.tags->Array.filter(t => !Shape.Tag.eq(t, tag)),
       updatedAt: Date.now(),
     })
   }

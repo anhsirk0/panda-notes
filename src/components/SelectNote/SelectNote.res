@@ -1,8 +1,6 @@
-open Note
-
 module NoteItem = {
   @react.component
-  let make = (~note: Note.t, ~onClick, ~isSelected, ~showDivider) => {
+  let make = (~note: Shape.Note.t, ~onClick, ~isSelected, ~showDivider) => {
     let bg = isSelected ? "bg-base-200" : ""
     let className = `card card-compact ${bg} w-full relative overflow-hidden shrink-0 cursor-pointer animate-slide`
     <li className onClick>
@@ -25,7 +23,7 @@ module NoteItem = {
 }
 
 @react.component
-let make = (~notes: array<Note.t>, ~noteId, ~setNoteId, ~children) => {
+let make = (~notes: array<Shape.Note.t>, ~noteId, ~setNoteId, ~children) => {
   let noteIdx = noteId->Option.map(id => notes->Array.findIndex(n => n.id == id))
 
   let noteItems = notes->Array.mapWithIndex((note, idx) => {

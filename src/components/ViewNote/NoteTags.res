@@ -1,8 +1,7 @@
-open Tag
 open Icon
 
 @react.component
-let make = (~noteTags: array<Tag.t>, ~onAddTag, ~onDeleteTag) => {
+let make = (~noteTags: array<Shape.Tag.t>, ~onAddTag, ~onDeleteTag) => {
   let (value, setValue) = React.useState(_ => "")
 
   let tagItems = noteTags->Array.map(tag => {

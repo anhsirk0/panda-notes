@@ -1,17 +1,13 @@
-open Themes
-open SettingStore
-open Utils
-
 @react.component
 let make = () => {
-  let {settings} = SettingStore.use()
+  let {settings} = Store.Settings.use()
 
   React.useEffect(() => {
     settings.theme->Utils.setTheme
     None
   }, [])
 
-  let themeCards = Array.map(themes, theme =>
+  let themeCards = Array.map(Themes.themes, theme =>
     <ThemeCard theme key=theme>
       <div className="flex flex-row gap-1 rounded-btn [&>div]:h-6 [&>div]:w-2 [&>div]:rounded-box">
         <div className="bg-primary" />

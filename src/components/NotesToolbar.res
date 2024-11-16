@@ -1,13 +1,9 @@
-open Note
 open Icon
-open Tag
-open NoteStore
-open SettingStore
 
 @react.component
-let make = (~tag: option<Tag.t>, ~setNoteId, ~query, ~setQuery) => {
-  let {addNote} = NoteStore.use()
-  let {settings} = SettingStore.use()
+let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
+  let {addNote} = Store.Notes.use()
+  let {settings} = Store.Settings.use()
 
   let (isSearching, setIsSearching) = React.useState(_ => false)
   let toggleSearching = _ => {
@@ -22,7 +18,7 @@ let make = (~tag: option<Tag.t>, ~setNoteId, ~query, ~setQuery) => {
 
   let onAdd = _ => {
     let now = Date.now()
-    let note: Note.t = {
+    let note: Shape.Note.t = {
       id: now->Float.toInt,
       title: "New note",
       content: "",

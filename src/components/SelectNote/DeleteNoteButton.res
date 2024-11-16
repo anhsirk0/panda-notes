@@ -1,9 +1,7 @@
-open NoteStore
 open Icon
-open Note
 
 @react.component
-let make = (~note: Note.t) => {
+let make = (~note: Shape.Note.t) => {
   let (isOpen, setIsOpen) = React.useState(_ => false)
   let toggleOpen = () => setIsOpen(val => !val)
 
@@ -12,7 +10,7 @@ let make = (~note: Note.t) => {
     toggleOpen()
   }
 
-  let {deleteNote} = NoteStore.use()
+  let {deleteNote} = Store.Notes.use()
 
   <React.Fragment>
     <button

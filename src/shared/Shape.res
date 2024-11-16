@@ -1,4 +1,22 @@
-open Note
+module Tag = {
+  type t = {
+    id: int,
+    title: string,
+  }
+
+  let eq = (one: t, other: t) => one.id == other.id
+}
+
+module Note = {
+  type t = {
+    id: int,
+    title: string,
+    content: string,
+    createdAt: float,
+    updatedAt: float,
+    tags: array<Tag.t>,
+  }
+}
 
 module Library = {
   type t = array<Note.t>

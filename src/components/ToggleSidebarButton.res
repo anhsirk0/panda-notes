@@ -1,9 +1,8 @@
-open SettingStore
 open Icon
 
 @react.component
 let make = () => {
-  let {settings, toggleSidebar} = SettingStore.use()
+  let {settings, toggleSidebar} = Store.Settings.use()
   let onClick = _ => toggleSidebar()
 
   settings.sidebar

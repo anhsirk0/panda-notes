@@ -1,9 +1,8 @@
-open SettingStore
 open Icon
 
 @react.component
 let make = (~count, ~children) => {
-  let {settings} = SettingStore.use()
+  let {settings} = Store.Settings.use()
 
   let left = settings.sidebar ? "-left-[13rem]" : "-left-[29rem] xxl:-left-[33rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
@@ -17,7 +16,7 @@ let make = (~count, ~children) => {
         <div className="flex flex-row gap-1 items-center justify-between h-9 xxl:h-12">
           <p className="card-title"> {settings.title->React.string} </p>
           // <button ariaLabel="settings-btn" className="btn btn-neutral btn-square resp-btn">
-          //   <Icon.x className="resp-icon rotate-90" />
+          //   <Icon.sliders className="resp-icon rotate-90" />
           // </button>
         </div>
         {children}

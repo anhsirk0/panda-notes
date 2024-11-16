@@ -1,24 +1,19 @@
-open SettingStore
-open NoteStore
-open Tag
-open Utils
-
 @react.component
 let make = () => {
-  let {settings} = SettingStore.use()
-  let {library} = NoteStore.use()
+  let {settings} = Store.Settings.use()
+  let {library} = Store.Notes.use()
 
   let (tag, setTag) = React.useState(_ => None)
   let (noteId, setNoteId) = React.useState(_ => None)
   let (query, setQuery) = React.useState(_ => "")
 
-  let tags = library->Array.reduce([], (acc: array<Tag.t>, item) => {
+  let tags = library->Array.reduce([], (acc: array<Shape.Tag.t>, item) => {
     acc->Array.concat(item.tags->Array.filter(tg => !(acc->Array.some(t => t.id == tg.id))))
   })
 
   let notes =
     tag
-    ->Option.map(t => library->Array.filter(n => n.tags->Array.some(Tag.eq(_, t))))
+    ->Option.map(t => library->Array.filter(n => n.tags->Array.some(Shape.Tag.eq(_, t))))
     ->Option.getOr(library)
 
   let filteredNotes = notes->Array.filter(n => {
