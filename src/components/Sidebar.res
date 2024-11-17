@@ -1,5 +1,3 @@
-open Icon
-
 @react.component
 let make = (~count, ~children) => {
   let {settings} = Store.Settings.use()

@@ -1,5 +1,3 @@
-open Icon
-
 module Item = {
   @react.component
   let make = (~title, ~isSelected, ~onClick, ~isTag=false) => {

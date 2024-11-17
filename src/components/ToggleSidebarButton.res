@@ -1,5 +1,3 @@
-open Icon
-
 @react.component
 let make = () => {
   let {settings, toggleSidebar} = Store.Settings.use()

@@ -1,5 +1,3 @@
-open Icon
-
 @react.component
 let make = (~note: Shape.Note.t) => {
   let (isOpen, setIsOpen) = React.useState(_ => false)

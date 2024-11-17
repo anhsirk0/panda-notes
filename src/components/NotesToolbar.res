@@ -1,5 +1,3 @@
-open Icon
-
 @react.component
 let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
   let {addNote} = Store.Notes.use()

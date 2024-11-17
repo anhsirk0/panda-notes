@@ -11,7 +11,7 @@ module NoteItem = {
       <div className="card-body !py-2 group">
         <DeleteNoteButton note />
         <h2 className="card-title resp-title"> {note.title->React.string} </h2>
-        <pre className="line-clamp-3 grow -mt-2 text-base-content/80">
+        <pre className="line-clamp-2 xxl:line-clamp-3 grow -mt-2 text-base-content/80">
           {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>
         <div className="card-actions text-sm text-base-content/60">
