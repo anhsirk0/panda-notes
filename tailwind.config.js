@@ -37,9 +37,9 @@ export default {
       slide: "slide 200ms ease-in-out",
     },
     fontFamily: {
-      sans: ["Eurostile", "Open Sans"],
-      body: ["Eurostile"],
-      display: ["Eurostile"],
+      sans: ["Raleway", "Open Sans"],
+      body: ["Raleway"],
+      display: ["Raleway"],
     },
   },
   plugins: [daisyui],

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+  font-family: "Raleway";
+  src: local("Raleway"), url("assets/fonts/Raleway/Raleway-Regular.ttf");
+}
+}
+
 #root {
   @apply center h-screen w-screen transitional bg-base-100 flex flex-row relative;
 }
