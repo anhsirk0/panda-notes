@@ -46,6 +46,5 @@ export default {
   daisyui: {
     themes,
     darkTheme: "business",
-    themeRoot: ":root",
   },
 };
