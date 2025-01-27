@@ -54,16 +54,17 @@ module Notes = {
   module StoreData = {
     type state = {
       library: Shape.Library.t,
-      favorites: array<int>,
+      pinned: array<int>,
       updateNote: Shape.Note.t => unit,
       addNote: Shape.Note.t => unit,
       deleteNote: int => unit,
+      toggleNotePin: (int, bool) => unit,
     }
   }
   module AppStore = Zustand.MakeStore(StoreData)
   let store = AppStore.create(AppStore.persist(set => {
       library: Shape.Library.defaultNotes,
-      favorites: [],
+      pinned: [],
       addNote: note => set(.state => {...state, library: [note]->Array.concat(state.library)}),
       deleteNote: id =>
         set(.state => {...state, library: state.library->Array.filter(n => n.id != id)}),
@@ -71,6 +72,13 @@ module Notes = {
         set(.state => {
           ...state,
           library: state.library->Array.map(n => n.id == note.id ? note : n),
+        }),
+      toggleNotePin: (id, isPinned) =>
+        set(.state => {
+          ...state,
+          pinned: isPinned
+            ? state.pinned->Array.filter(i => i != id)
+            : state.pinned->Array.concat([id]),
         }),
     }, {name: "panda-notes-library"}))
 

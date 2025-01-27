@@ -1,7 +1,7 @@
 @react.component
 let make = () => {
   let {settings} = Store.Settings.use()
-  let {library} = Store.Notes.use()
+  let {library, pinned} = Store.Notes.use()
 
   let (tag, setTag) = React.useState(_ => None)
   let (noteId, setNoteId) = React.useState(_ => None)
@@ -15,6 +15,12 @@ let make = () => {
     tag
     ->Option.map(t => library->Array.filter(n => n.tags->Array.some(Shape.Tag.eq(_, t))))
     ->Option.getOr(library)
+    ->Array.toSorted((a, b) => {
+      let aIdx = pinned->Array.findIndex(id => id == a.id)
+      let bIdx = pinned->Array.findIndex(id => id == b.id)
+
+      (bIdx - aIdx)->Int.toFloat
+    })
 
   let filteredNotes = notes->Array.filter(n => {
     let hasQ = Utils.strContains(_, query)

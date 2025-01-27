@@ -18,15 +18,22 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
     None
   })
 
-  <div onClick onKeyDown className="modal modal-open modal-bottom sm:modal-middle">
-    <div className onClick=ReactEvent.Mouse.stopPropagation>
-      <div className="flex flex-row items-center justify-between mb-4 -mt-1">
-        <p className="font-bold text-lg"> {React.string(title)} </p>
-        <button id="close-btn" onClick className="btn resp-btn btn-circle btn-ghost -mt-2">
-          {React.string(`✕`)}
-        </button>
-      </div>
-      {children}
-    </div>
-  </div>
+  switch ReactDOM.querySelector("#root") {
+  | Some(domElement) =>
+    ReactDOM.createPortal(
+      <div onClick onKeyDown className="modal modal-open modal-bottom sm:modal-middle">
+        <div className onClick=ReactEvent.Mouse.stopPropagation>
+          <div className="flex flex-row items-center justify-between mb-4 -mt-1">
+            <p className="font-bold text-lg"> {React.string(title)} </p>
+            <button id="close-btn" onClick className="btn resp-btn btn-circle btn-ghost -mt-2">
+              {React.string(`✕`)}
+            </button>
+          </div>
+          {children}
+        </div>
+      </div>,
+      domElement,
+    )
+  | None => React.null
+  }
 }

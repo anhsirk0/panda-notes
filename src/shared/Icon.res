@@ -1,4 +1,4 @@
-type props = {className?: string}
+type props = {className?: string, weight?: string}
 type t = React.component<props>
 
 @module("@phosphor-icons/react") external palette: t = "Palette"
@@ -12,3 +12,5 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external trash: t = "Trash"
 @module("@phosphor-icons/react") external notepad: t = "Notepad"
 @module("@phosphor-icons/react") external hash: t = "Hash"
+@module("@phosphor-icons/react") external mapPin: t = "MapPinSimple"
+@module("@phosphor-icons/react") external dotsThree: t = "DotsThree"
