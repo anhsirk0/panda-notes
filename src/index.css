@@ -90,101 +90,51 @@ html,
   --color-accent-fg: oklch(var(--bc)) !important;
   --color-accent-emphasis: oklch(var(--bc)) !important;
   --color-attention-subtle: oklch(var(--bc)) !important;
-  --color-danger-fg: oklch(var(--e)) !important;
+  --color-danger-fg: oklch(var(--er)) !important;
   --color-border-default: oklch(var(--bc)) !important;
   /* --color-border-muted: hsla(210, 18%, 87%, 1); */
   /* --color-neutral-muted: rgba(175, 184, 193, 0.2); */
 
-  --color-prettylights-syntax-comment: oklch(
-    var(--bc)
-  ) !important; /* #6e7781; */
-  --color-prettylights-syntax-constant: oklch(
-    var(--bc)
-  ) !important; /* #0550ae; */
-  --color-prettylights-syntax-entity: oklch(
-    var(--bc)
-  ) !important; /* #8250df; */
+  --color-prettylights-syntax-comment: oklch(var(--bc) / 0.6) !important;
+  --color-prettylights-syntax-constant: oklch(var(--a)) !important;
+  --color-prettylights-syntax-entity: oklch(var(--s)) !important;
   --color-prettylights-syntax-storage-modifier-import: oklch(
     var(--bc)
-  ) !important; /* #24292f; */
-  --color-prettylights-syntax-entity-tag: oklch(
-    var(--bc)
-  ) !important; /* #116329; */
-  --color-prettylights-syntax-keyword: oklch(
-    var(--bc)
-  ) !important; /* #cf222e; */
-  --color-prettylights-syntax-string: oklch(
-    var(--bc)
-  ) !important; /* #0a3069; */
-  --color-prettylights-syntax-variable: oklch(
-    var(--bc)
-  ) !important; /* #953800; */
+  ) !important;
+  --color-prettylights-syntax-entity-tag: oklch(var(--s)) !important;
+  --color-prettylights-syntax-keyword: oklch(var(--p)) !important;
+  --color-prettylights-syntax-string: oklch(var(--su)) !important;
+  --color-prettylights-syntax-variable: oklch(var(--er)) !important;
   --color-prettylights-syntax-brackethighlighter-unmatched: oklch(
     var(--bc)
-  ) !important; /* #82071e; */
-  --color-prettylights-syntax-invalid-illegal-text: oklch(
-    var(--bc)
-  ) !important; /* #f6f8fa; */
-  --color-prettylights-syntax-invalid-illegal-bg: oklch(
-    var(--bc)
-  ) !important; /* #82071e; */
-  --color-prettylights-syntax-carriage-return-text: oklch(
-    var(--bc)
-  ) !important; /* #f6f8fa; */
-  --color-prettylights-syntax-carriage-return-bg: oklch(
-    var(--bc)
-  ) !important; /* #cf222e; */
-  --color-prettylights-syntax-string-regexp: oklch(
-    var(--bc)
-  ) !important; /* #116329; */
-  --color-prettylights-syntax-markup-list: oklch(
-    var(--bc)
-  ) !important; /* #3b2300; */
-  --color-prettylights-syntax-markup-heading: oklch(
-    var(--bc)
-  ) !important; /* #0550ae; */
-  --color-prettylights-syntax-markup-italic: oklch(
-    var(--bc)
-  ) !important; /* #24292f; */
-  --color-prettylights-syntax-markup-bold: oklch(
-    var(--bc)
-  ) !important; /* #24292f; */
-  --color-prettylights-syntax-markup-deleted-text: oklch(
-    var(--bc)
-  ) !important; /* #82071e; */
-  --color-prettylights-syntax-markup-deleted-bg: oklch(
-    var(--bc)
-  ) !important; /* #ffebe9; */
-  --color-prettylights-syntax-markup-inserted-text: oklch(
-    var(--bc)
-  ) !important; /* #116329; */
-  --color-prettylights-syntax-markup-inserted-bg: oklch(
-    var(--bc)
-  ) !important; /* #dafbe1; */
-  --color-prettylights-syntax-markup-changed-text: oklch(
-    var(--bc)
-  ) !important; /* #953800; */
-  --color-prettylights-syntax-markup-changed-bg: oklch(
-    var(--bc)
-  ) !important; /* #ffd8b5; */
-  --color-prettylights-syntax-markup-ignored-text: oklch(
-    var(--bc)
-  ) !important; /* #eaeef2; */
-  --color-prettylights-syntax-markup-ignored-bg: oklch(
-    var(--bc)
-  ) !important; /* #0550ae; */
-  --color-prettylights-syntax-meta-diff-range: oklch(
-    var(--bc)
-  ) !important; /* #8250df; */
+  ) !important;
+  --color-prettylights-syntax-invalid-illegal-text: oklch(var(--er)) !important;
+  --color-prettylights-syntax-invalid-illegal-bg: oklch(var(--er)) !important;
+  --color-prettylights-syntax-carriage-return-text: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-carriage-return-bg: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-string-regexp: oklch(var(--a)) !important;
+  --color-prettylights-syntax-markup-list: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-heading: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-italic: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-bold: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-deleted-text: oklch(var(--er)) !important;
+  --color-prettylights-syntax-markup-deleted-bg: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-inserted-text: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-inserted-bg: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-changed-text: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-changed-bg: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-ignored-text: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-markup-ignored-bg: oklch(var(--bc)) !important;
+  --color-prettylights-syntax-meta-diff-range: oklch(var(--bc)) !important;
   --color-prettylights-syntax-brackethighlighter-angle: oklch(
     var(--bc)
-  ) !important; /* #57606a; */
+  ) !important;
   --color-prettylights-syntax-sublimelinter-gutter-mark: oklch(
     var(--bc)
-  ) !important; /* #8c959f; */
+  ) !important;
   --color-prettylights-syntax-constant-other-reference-link: oklch(
     var(--bc)
-  ) !important; /* #0a3069; */
+  ) !important;
 }
 
 .w-md-editor,

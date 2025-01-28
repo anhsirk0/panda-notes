@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [
     react({ include: ["**/*.res.mjs"] }),
     VitePWA({
+      registerType: "autoUpdate",
       manifest: {
         name: "Panda notes",
         short_name: "PandaNotes",
