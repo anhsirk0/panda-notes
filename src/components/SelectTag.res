@@ -7,7 +7,7 @@ module Item = {
       {isTag
         ? <Icon.hash className="resp-icon text-neutral-content/80" />
         : <Icon.notepad className="resp-icon text-neutral-content/80" />}
-      {title->React.string}
+      <span className="truncate"> {title->React.string} </span>
     </div>
   }
 }

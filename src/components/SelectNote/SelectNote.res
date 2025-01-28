@@ -45,7 +45,7 @@ module NoteItem = {
         </pre>
         <div className="card-actions text-sm text-base-content/60 items-center">
           {isPinned ? <Icon.mapPin className="size-4 text-primary" weight="fill" /> : React.null}
-          {note.updatedAt->Utils.toDateStr->React.string}
+          {note.updatedAt->Utils.toRelativeDateStr->React.string}
         </div>
       </div>
     </li>
@@ -68,9 +68,11 @@ let make = (~notes: array<Shape.Note.t>, ~noteId, ~setNoteId, ~children) => {
     </Delay>
   })
 
-  <div className="flex flex-col px-4 pt-0 border-r border-base-content/20 h-full">
+  let size = "h-full w-[18rem] min-w-[18rem] xxl:w-[22rem] xxl:min-w-[22rem]"
+
+  <div className={`flex flex-col px-4 pt-0 border-r border-base-content/20 ${size}`}>
     {children}
-    <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-64 xxl:w-72">
+    <ul id="notes-list" className="flex flex-col min-h-0 grow overflow-y-auto w-full">
       {React.array(noteItems)}
     </ul>
     {notes->Array.length > 0

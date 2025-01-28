@@ -12,7 +12,7 @@ let querySelectAndThen = (selector, action) => {
 let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
 let strContains = (s1, s2) => s1->String.toLowerCase->String.includes(s2->String.toLowerCase)
 
-let toDateStr = date => {
+let toRelativeDateStr = date => {
   let fmt = if date->DateFns.isToday {
     "hh:mm aa"
   } else if date->DateFns.isYesterday {
@@ -24,3 +24,5 @@ let toDateStr = date => {
   }
   date->DateFns.format(fmt)
 }
+
+let toDateStr = date => date->DateFns.format("hh:mm aa, dd-MM-yyyy")

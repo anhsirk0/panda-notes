@@ -19,3 +19,4 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external note: t = "Note"
 @module("@phosphor-icons/react") external sortAscending: t = "SortAscending"
 @module("@phosphor-icons/react") external sortDescending: t = "SortDescending"
+@module("@phosphor-icons/react") external info: t = "Info"
