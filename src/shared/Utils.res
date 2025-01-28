@@ -17,6 +17,8 @@ let toDateStr = date => {
     "hh:mm aa"
   } else if date->DateFns.isYesterday {
     "hh:mm aa 'Yesterday'"
+  } else if date->DateFns.isThisWeek {
+    "hh:mm aa EEEE"
   } else {
     "hh:mm aa, dd-MM-yyyy"
   }

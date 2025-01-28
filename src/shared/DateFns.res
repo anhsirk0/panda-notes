@@ -1,3 +1,5 @@
-@module("date-fns") external format: (Js.Date.t, string) => string = "format"
-@module("date-fns") external isToday: Js.Date.t => bool = "isToday"
-@module("date-fns") external isYesterday: Js.Date.t => bool = "isYesterday"
+@module("date-fns") external format: (float, string) => string = "format"
+@module("date-fns") external isThisMinute: float => bool = "isThisMinute"
+@module("date-fns") external isToday: float => bool = "isToday"
+@module("date-fns") external isYesterday: float => bool = "isYesterday"
+// @module("date-fns") external isThisWeek: float => bool = "isThisWeek"
