@@ -1,5 +1,5 @@
 @module("date-fns") external format: (float, string) => string = "format"
-@module("date-fns") external isThisMinute: float => bool = "isThisMinute"
+// @module("date-fns") external isThisMinute: float => bool = "isThisMinute"
 @module("date-fns") external isToday: float => bool = "isToday"
 @module("date-fns") external isYesterday: float => bool = "isYesterday"
-// @module("date-fns") external isThisWeek: float => bool = "isThisWeek"
+@module("date-fns") external isThisWeek: float => bool = "isThisWeek"
