@@ -17,6 +17,7 @@
     "@rescript/react": "^0.12.1",
     "@uiw/react-md-editor": "^4.0.4",
     "daisyui": "^4.12.10",
+    "date-fns": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^11.0.3",

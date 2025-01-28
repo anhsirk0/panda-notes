@@ -45,7 +45,7 @@ module NoteItem = {
         </pre>
         <div className="card-actions text-sm text-base-content/60 items-center">
           {isPinned ? <Icon.mapPin className="size-4 text-primary" weight="fill" /> : React.null}
-          {note.updatedAt->Js.Date.fromFloat->Date.toDateString->React.string}
+          {note.updatedAt->Js.Date.fromFloat->Utils.toDateStr->React.string}
         </div>
       </div>
     </li>
