@@ -18,6 +18,12 @@ let make = () => {
     ->Option.map(t => library->Array.filter(n => n.tags->Array.some(Shape.Tag.eq(_, t))))
     ->Option.getOr(library)
     ->Array.toSorted((a, b) => {
+      switch settings.sort {
+      | DateAsc => a.updatedAt -. b.updatedAt
+      | DateDesc => b.updatedAt -. a.updatedAt
+      }
+    })
+    ->Array.toSorted((a, b) => {
       let aIdx = pinned->Array.findIndex(id => id == a.id)
       let bIdx = pinned->Array.findIndex(id => id == b.id)
 

@@ -1,7 +1,7 @@
 @react.component
 let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
   let {addNote} = Store.Notes.use()
-  let {settings} = Store.Settings.use()
+  let {settings, update} = Store.Settings.use()
 
   let (isSearching, setIsSearching) = React.useState(_ => false)
   let toggleSearching = _ => {
@@ -26,6 +26,16 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
     }
     addNote(note)
     setNoteId(_ => Some(note.id))
+  }
+
+  let toggleSort = _ => {
+    update({
+      ...settings,
+      sort: switch settings.sort {
+      | DateAsc => DateDesc
+      | DateDesc => DateAsc
+      },
+    })
   }
 
   isSearching
@@ -56,6 +66,13 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
           ariaLabel="search-note"
           className="btn btn-ghost btn-square resp-btn">
           <Icon.magnifyingGlass className="resp-icon text-base-content/80" />
+        </button>
+        <button
+          onClick=toggleSort ariaLabel="toggle-sort" className="btn btn-ghost btn-square resp-btn">
+          {switch settings.sort {
+          | DateAsc => <Icon.sortDescending className="resp-icon text-base-content/80" />
+          | DateDesc => <Icon.sortAscending className="resp-icon text-base-content/80" />
+          }}
         </button>
       </div>
 }

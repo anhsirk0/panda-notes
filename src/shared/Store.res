@@ -25,17 +25,22 @@ module Zustand = {
 
 module Settings = {
   module StoreData = {
-    type settings = {theme: string, title: string, sidebar: bool}
+    type settings = {
+      theme: string,
+      title: string,
+      sidebar: bool,
+      sort: Shape.Sort.t,
+    }
+    let defaultSettings = {
+      sort: DateDesc,
+      theme: "corporate",
+      title: "Panda Notes",
+      sidebar: true,
+    }
     type state = {
       settings: settings,
       update: settings => unit,
       toggleSidebar: unit => unit,
-    }
-
-    let defaultSettings = {
-      theme: "corporate",
-      title: "Panda Notes",
-      sidebar: true,
     }
   }
 

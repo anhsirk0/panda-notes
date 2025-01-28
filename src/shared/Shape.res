@@ -1,9 +1,9 @@
-module Tag = {
-  type t = {
-    id: int,
-    title: string,
-  }
+module Sort = {
+  type t = DateAsc | DateDesc
+}
 
+module Tag = {
+  type t = {id: int, title: string}
   let eq = (one, other) => one.id == other.id
 }
 
