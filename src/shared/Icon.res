@@ -14,3 +14,5 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external hash: t = "Hash"
 @module("@phosphor-icons/react") external mapPin: t = "MapPinSimple"
 @module("@phosphor-icons/react") external dotsThree: t = "DotsThree"
+@module("@phosphor-icons/react") external notebook: t = "Notebook"
+@module("@phosphor-icons/react") external note: t = "Note"

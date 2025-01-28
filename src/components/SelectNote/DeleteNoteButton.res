@@ -13,6 +13,7 @@ let make = (~note: Shape.Note.t, ~afterDelete) => {
   let onDelete = _ => {
     deleteNote(note.id)
     afterDelete()
+    Toast.success("Note deleted successfully")
   }
 
   <React.Fragment>

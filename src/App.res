@@ -1,3 +1,5 @@
+%%raw("import 'react-toastify/dist/ReactToastify.css'")
+
 @react.component
 let make = () => {
   let {settings} = Store.Settings.use()
@@ -32,6 +34,7 @@ let make = () => {
   let leftP = settings.sidebar ? "pl-[12rem] xxl:pl-[16rem]" : "pl-0"
 
   <React.Fragment>
+    <Toast.container pauseOnFocusLoss=false position="bottom-right" />
     <Sidebar count={notes->Array.length}>
       <SelectTag tag setTag tags setNoteId />
     </Sidebar>
@@ -41,7 +44,11 @@ let make = () => {
       </SelectNote>
       {switch note {
       | Some(note) => <ViewNote note tags key={note.id->Int.toString} />
-      | None => <div className="center size-full"> {"Select a note to view"->React.string} </div>
+      | None =>
+        <div className="center flex-col size-full">
+          <Icon.note className="size-24" />
+          <p className="text-3xl font-bold"> {"Select a note to view"->React.string} </p>
+        </div>
       }}
     </div>
   </React.Fragment>

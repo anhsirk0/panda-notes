@@ -57,11 +57,5 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
           className="btn btn-ghost btn-square resp-btn">
           <Icon.magnifyingGlass className="resp-icon text-base-content/80" />
         </button>
-        <button
-          onClick=toggleSearching
-          ariaLabel="search-note"
-          className="btn btn-ghost btn-square resp-btn">
-          <Icon.magnifyingGlass className="resp-icon text-base-content/80" />
-        </button>
       </div>
 }

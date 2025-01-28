@@ -9,7 +9,8 @@
   }
 }
 
-html, .wmde-markdown {
+html,
+.wmde-markdown {
   font-family:
     Manrope,
     Open Sans;
@@ -45,6 +46,36 @@ html, .wmde-markdown {
 
 .resp-icon {
   @apply size-4 lg:size-6 xxl:size-7;
+}
+
+.Toastify__toast-theme--light,
+.Toastify__toast-theme--dark {
+  @apply bg-neutral text-neutral-content;
+  /* border-radius: var(--rounded-box); */
+}
+
+.Toastify__progress-bar--error {
+  @apply bg-error text-error-content;
+}
+
+.Toastify__progress-bar--success {
+  @apply bg-success text-success-content;
+}
+
+.Toastify__progress-bar--warn {
+  @apply bg-warning text-warning-content;
+}
+
+/* .Toastify__toast--success { */
+/*   @apply bg-success/40 text-success-content; */
+/* } */
+
+/* .Toastify__toast--error { */
+/*   @apply bg-error/40 text-error-content; */
+/* } */
+
+.Toastify__close-button > svg {
+  @apply fill-neutral-content;
 }
 
 .wmde-markdown,

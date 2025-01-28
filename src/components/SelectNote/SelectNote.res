@@ -75,6 +75,9 @@ let make = (~notes: array<Shape.Note.t>, ~noteId, ~setNoteId, ~children) => {
     </ul>
     {notes->Array.length > 0
       ? React.null
-      : <div className="center size-full"> {"No notes"->React.string} </div>}
+      : <div className="center flex-col size-full">
+          <Icon.notebook className="size-24" />
+          <p className="text-3xl font-bold"> {"No notes yet"->React.string} </p>
+        </div>}
   </div>
 }
