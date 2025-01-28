@@ -1,20 +1,29 @@
 @react.component
 let make = () => {
-  let {settings} = Store.Settings.use()
+  let {settings, update} = Store.Settings.use()
 
-  React.useEffect(() => {
+  let onChange = theme => {
+    theme->Utils.setTheme
+    update({...settings, theme})
+  }
+
+  React.useEffect0(() => {
     settings.theme->Utils.setTheme
     None
-  }, [])
+  })
 
   let themeCards = Array.map(Themes.themes, theme =>
-    <ThemeCard theme key=theme>
+    <ThemeCard theme onChange key=theme>
+      {theme->React.string}
       <div className="flex flex-row gap-1 rounded-btn [&>div]:h-6 [&>div]:w-2 [&>div]:rounded-box">
         <div className="bg-primary" />
         <div className="bg-accent" />
         <div className="bg-secondary" />
         <div className="bg-neutral" />
       </div>
+      {settings.theme == theme
+        ? <Icon.sparkle className="size-4 absolute top-1 left-1 animate-grow" weight="fill" />
+        : React.null}
     </ThemeCard>
   )
 

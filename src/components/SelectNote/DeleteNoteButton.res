@@ -17,7 +17,7 @@ let make = (~note: Shape.Note.t, ~afterDelete) => {
   }
 
   <React.Fragment>
-    <button onClick>
+    <button onClick className="hover:!bg-error/80 hover:text-error-content">
       <Icon.trash className="text-xl" />
       {"Delete"->React.string}
     </button>

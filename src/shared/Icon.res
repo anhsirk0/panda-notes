@@ -1,6 +1,7 @@
 type props = {className?: string, weight?: string}
 type t = React.component<props>
 
+@module("@phosphor-icons/react") external sparkle: t = "Sparkle"
 @module("@phosphor-icons/react") external palette: t = "Palette"
 @module("@phosphor-icons/react") external arrowLineLeft: t = "ArrowLineLeft"
 // @module("@phosphor-icons/react") external arrowLineRight: t = "ArrowLineRight"

@@ -25,8 +25,8 @@ module NoteItem = {
         </label>
         <ul
           tabIndex=0
-          className="dropdown-content z-10 menu shadow mt-10 bg-secondary text-secondary-content rounded-box">
-          <li className="text-error">
+          className="dropdown-content z-10 menu shadow mt-10 bg-secondary text-secondary-content rounded-box [&>li>*:hover]:bg-base-100/20">
+          <li>
             <DeleteNoteButton note afterDelete />
           </li>
           <li>

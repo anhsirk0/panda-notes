@@ -20,18 +20,10 @@ module MyOverrides = {
 @@jsxConfig({module_: "MyOverrides", mode: "automatic"})
 
 @react.component
-let make = (~theme, ~children) => {
-  let {settings, update} = Store.Settings.use()
+let make = (~theme, ~onChange, ~children) => {
+  let onClick = _ => theme->onChange
 
-  let onClick = _ => {
-    theme->Utils.setTheme
-    update({...settings, theme})
-  }
-
-  let ring = theme == settings.theme ? "ring-2 ring-primary" : ""
-
-  <li className={`btn w-full justify-between ${ring}`} onClick tabIndex=0 dataTheme=theme>
-    {theme->React.string}
+  <li className="btn w-full justify-between relative" onClick tabIndex=0 dataTheme=theme>
     {children}
   </li>
 }
