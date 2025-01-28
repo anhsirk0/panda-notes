@@ -42,14 +42,20 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
           <Icon.x className="resp-icon text-base-content/80" />
         </button>
       </label>
-    : <div className="flex flex-row gap-1 my-2 items-center">
+    : <div className="flex flex-row my-2 items-center">
         {settings.sidebar ? React.null : <ToggleSidebarButton />}
-        <p className="card-title">
+        <p className="card-title line-clamp-1">
           {tag->Option.map(t => "#" ++ t.title)->Option.getOr("Notes")->React.string}
         </p>
         <div className="grow" />
         <button onClick=onAdd ariaLabel="add-note" className="btn btn-ghost btn-square resp-btn">
           <Icon.notePencil className="resp-icon text-base-content/80" />
+        </button>
+        <button
+          onClick=toggleSearching
+          ariaLabel="search-note"
+          className="btn btn-ghost btn-square resp-btn">
+          <Icon.magnifyingGlass className="resp-icon text-base-content/80" />
         </button>
         <button
           onClick=toggleSearching

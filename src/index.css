@@ -27,6 +27,10 @@ html, .wmde-markdown {
   @apply transition-all duration-200 ease-in-out;
 }
 
+.modal:not(dialog:not(.modal-open)) {
+  @apply filter backdrop-blur;
+}
+
 .resp-text {
   @apply text-sm md:text-base lg:text-base xl:text-2xl xxl:text-4xl;
 }

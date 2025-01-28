@@ -15,7 +15,7 @@ export default defineConfig({
         background_color: "#ffffff",
         theme_color: "#ffffff",
         scope: "/",
-        icons: [{ src: "/vite.svg", type: "image/svg+xml", sizes: "any" }],
+        icons: [{ src: "/logo.svg", type: "image/svg+xml", sizes: "any" }],
       },
     }),
   ],

@@ -20,10 +20,12 @@ module NoteItem = {
         <label
           ariaLabel={`delete-${note.title}`}
           tabIndex=0
-          className="btn btn-sm btn-circle btn-ghost hidden group-hover:flex absolute top-2 right-3 -mr-2">
+          className="btn btn-sm btn-circle btn-ghost hidden group-hover:flex focus:flex absolute top-2 right-3 -mr-2">
           <Icon.dotsThree className="resp-icon" />
         </label>
-        <ul tabIndex=0 className="dropdown-content z-[1] menu shadow mt-10 bg-neutral rounded-box">
+        <ul
+          tabIndex=0
+          className="dropdown-content z-10 menu shadow mt-10 bg-secondary text-secondary-content rounded-box">
           <li className="text-error">
             <DeleteNoteButton note afterDelete />
           </li>
@@ -42,11 +44,7 @@ module NoteItem = {
           {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>
         <div className="card-actions text-sm text-base-content/60 items-center">
-          {isPinned
-            ? <button onClick=togglePin className="btn btn-xs btn-circle btn-ghost">
-                <Icon.mapPin className="size-4 text-primary" weight="fill" />
-              </button>
-            : React.null}
+          {isPinned ? <Icon.mapPin className="size-4 text-primary" weight="fill" /> : React.null}
           {note.updatedAt->Js.Date.fromFloat->Date.toDateString->React.string}
         </div>
       </div>

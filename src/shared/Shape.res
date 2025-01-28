@@ -4,7 +4,7 @@ module Tag = {
     title: string,
   }
 
-  let eq = (one: t, other: t) => one.id == other.id
+  let eq = (one, other) => one.id == other.id
 }
 
 module Note = {
