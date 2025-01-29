@@ -106,7 +106,7 @@ html,
     var(--bc)
   ) !important;
   --color-prettylights-syntax-entity-tag: oklch(var(--s)) !important;
-  --color-prettylights-syntax-keyword: oklch(var(--n)) !important;
+  --color-prettylights-syntax-keyword: oklch(var(--p)) !important;
   --color-prettylights-syntax-string: oklch(var(--su)) !important;
   --color-prettylights-syntax-variable: oklch(var(--er)) !important;
   --color-prettylights-syntax-brackethighlighter-unmatched: oklch(
