@@ -19,7 +19,10 @@ let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
       tags
       ->Array.find(t => t.title->String.toLowerCase == tagTitle->String.toLowerCase)
       ->Option.getOr({id: Date.now(), title: tagTitle})
-    updateNote({...note, tags: note.tags->Array.concat([tag]), updatedAt: Date.now()})
+
+    let newTags =
+      note.tags->Array.some(Shape.Tag.eq(tag, _)) ? note.tags : note.tags->Array.concat([tag])
+    updateNote({...note, tags: newTags, updatedAt: Date.now()})
   }
   let onDeleteTag = tag => {
     updateNote({
@@ -46,7 +49,7 @@ let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
   <div className="flex flex-col grow px-4 py-2 relative">
     <NoteOptions note />
     <NoteTitle title=note.title onSaveTitle />
-    <NoteTags tags noteTags=note.tags onAddTag onDeleteTag />
+    <NoteTags noteTags=note.tags onAddTag onDeleteTag />
     <div className="border-t border-base-content/20 size-full min-h-0 grow">
       <MDEditor.editor onChange value height="100%" preview="preview" />
     </div>

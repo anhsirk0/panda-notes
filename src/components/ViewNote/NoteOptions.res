@@ -25,7 +25,7 @@ let make = (~note: Shape.Note.t) => {
         id="note-options"
         ariaLabel={`info-${note.title}`}
         tabIndex=0
-        className="btn btn-sm btn-circle btn-ghost absolute top-2 right-1">
+        className="btn btn-sm btn-circle btn-ghost absolute top-0 -right-2">
         <Icon.dotsThreeVertical className="resp-icon" />
       </label>
       <div
