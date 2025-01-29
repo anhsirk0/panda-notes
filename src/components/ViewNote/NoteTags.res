@@ -1,5 +1,5 @@
 @react.component
-let make = (~noteTags: array<Shape.Tag.t>, ~onAddTag, ~onDeleteTag) => {
+let make = (~tags: array<Shape.Tag.t>, ~noteTags: array<Shape.Tag.t>, ~onAddTag, ~onDeleteTag) => {
   let (value, setValue) = React.useState(_ => "")
 
   let tagItems = noteTags->Array.map(tag => {
@@ -21,8 +21,12 @@ let make = (~noteTags: array<Shape.Tag.t>, ~onAddTag, ~onDeleteTag) => {
 
   let onSave = () => {
     if value->String.length > 0 {
-      onAddTag(value)
-      setValue(_ => "")
+      if tags->Array.some(t => t.title == value) {
+        Toast.error("Tag with same name already exists")
+      } else {
+        onAddTag(value)
+        setValue(_ => "")
+      }
     }
   }
 
