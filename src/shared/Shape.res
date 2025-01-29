@@ -3,13 +3,15 @@ module Sort = {
 }
 
 module Tag = {
-  type t = {id: int, title: string}
+  type id = float
+  type t = {id: id, title: string}
   let eq = (one, other) => one.id == other.id
 }
 
 module Note = {
+  type id = float
   type t = {
-    id: int,
+    id: id,
     title: string,
     content: string,
     createdAt: float,
@@ -23,7 +25,7 @@ module Library = {
 
   let defaultNotes: t = [
     {
-      id: 0,
+      id: 0.0,
       title: "Welcome",
       content: "# Welcome to Panda notes
 markdown notes with tag support

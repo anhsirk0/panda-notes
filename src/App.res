@@ -2,11 +2,12 @@
 
 @react.component
 let make = () => {
+  Js.log(Route.useParams())
   let {settings} = Store.Settings.use()
   let {library, pinned} = Store.Notes.use()
 
   let (tag, setTag) = React.useState(_ => None)
-  let (noteId, setNoteId) = React.useState(_ => None)
+  let noteId = Route.useParams()->URLParams.get("note-id")->Float.fromString
   let (query, setQuery) = React.useState(_ => "")
 
   let tags = library->Array.reduce([], (acc: array<Shape.Tag.t>, item) => {
@@ -36,20 +37,20 @@ let make = () => {
   })
   let note = noteId->Option.flatMap(id => notes->Array.find(n => n.id == id))
 
-  let key = tag->Option.map(tag => tag.id->Int.toString)->Option.getOr("None")
+  let key = tag->Option.map(tag => tag.id->Float.toString)->Option.getOr("None")
   let leftP = settings.sidebar ? "pl-[12rem] xxl:pl-[16rem]" : "pl-0"
 
   <React.Fragment>
     <Toast.container pauseOnFocusLoss=false position="bottom-right" />
     <Sidebar count={notes->Array.length}>
-      <SelectTag tag setTag tags setNoteId />
+      <SelectTag tag setTag tags />
     </Sidebar>
     <div className={`flex flex-row transitional ${leftP} size-full`}>
-      <SelectNote notes=filteredNotes noteId setNoteId key>
-        <NotesToolbar setNoteId tag query setQuery />
+      <SelectNote notes=filteredNotes noteId key>
+        <NotesToolbar tag query setQuery />
       </SelectNote>
       {switch note {
-      | Some(note) => <ViewNote note tags key={note.id->Int.toString} />
+      | Some(note) => <ViewNote note tags key={note.id->Float.toString} />
       | None =>
         <div className="center flex-col size-full">
           <Icon.note className="size-24" />

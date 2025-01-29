@@ -59,11 +59,11 @@ module Notes = {
   module StoreData = {
     type state = {
       library: Shape.Library.t,
-      pinned: array<int>,
+      pinned: array<Shape.Note.id>,
       updateNote: Shape.Note.t => unit,
       addNote: Shape.Note.t => unit,
-      deleteNote: int => unit,
-      toggleNotePin: (int, bool) => unit,
+      deleteNote: Shape.Note.id => unit,
+      toggleNotePin: (Shape.Note.id, bool) => unit,
     }
   }
   module AppStore = Zustand.MakeStore(StoreData)

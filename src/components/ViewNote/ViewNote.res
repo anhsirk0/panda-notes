@@ -1,5 +1,6 @@
 @react.component
 let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
+  Hook.useDocTitle(note.title)
   let {updateNote} = Store.Notes.use()
   let (value, setValue) = React.useState(_ => note.content)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
@@ -17,7 +18,7 @@ let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
     let tag =
       tags
       ->Array.find(t => t.title->String.toLowerCase == tagTitle->String.toLowerCase)
-      ->Option.getOr({id: Date.now()->Float.toInt, title: tagTitle})
+      ->Option.getOr({id: Date.now(), title: tagTitle})
     updateNote({...note, tags: note.tags->Array.concat([tag]), updatedAt: Date.now()})
   }
   let onDeleteTag = tag => {

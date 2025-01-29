@@ -54,15 +54,15 @@ let make = (~note: Shape.Note.t) => {
     {isOpen
       ? <Modal title=note.title onClose=toggleOpen>
           <div className="flex flex-col gap-4">
-            <p className="text-secondary-content/80">
+            <p>
               {"Updated At:"->React.string}
-              <span className="text-secondary-content font-medium ml-2">
+              <span className="font-medium ml-2">
                 {note.updatedAt->Utils.toRelativeDateStr->React.string}
               </span>
             </p>
-            <p className="text-secondary-content/80">
+            <p>
               {"Created At:"->React.string}
-              <span className="text-secondary-content font-medium ml-2">
+              <span className="font-medium ml-2">
                 {note.createdAt->Utils.toDateStr->React.string}
               </span>
             </p>

@@ -13,11 +13,11 @@ module Item = {
 }
 
 @react.component
-let make = (~tag, ~setTag, ~tags, ~setNoteId) => {
+let make = (~tag, ~setTag, ~tags) => {
   let tagItems = tags->Array.map(item => {
     let onClick = _ => {
       setTag(_ => Some(item))
-      setNoteId(_ => None)
+      RescriptReactRouter.push("/")
     }
     let isSelected = tag->Option.filter(Shape.Tag.eq(_, item))->Option.isSome
     <Item key=item.title title=item.title onClick isSelected isTag=true />

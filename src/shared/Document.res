@@ -1,5 +1,6 @@
 type t
 @val external document: t = "document"
+@set external setTitle: (t, string) => unit = "title"
 
 @val @scope("document")
 external createElement: string => Dom.element = "createElement"

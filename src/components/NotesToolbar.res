@@ -1,5 +1,5 @@
 @react.component
-let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
+let make = (~tag: option<Shape.Tag.t>, ~query, ~setQuery) => {
   let {addNote} = Store.Notes.use()
   let {settings, update} = Store.Settings.use()
 
@@ -17,7 +17,7 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
   let onAdd = _ => {
     let now = Date.now()
     let note: Shape.Note.t = {
-      id: now->Float.toInt,
+      id: now,
       title: "New note",
       content: "",
       createdAt: now,
@@ -25,7 +25,7 @@ let make = (~tag: option<Shape.Tag.t>, ~setNoteId, ~query, ~setQuery) => {
       tags: tag->Option.map(t => [t])->Option.getOr([]),
     }
     addNote(note)
-    setNoteId(_ => Some(note.id))
+    RescriptReactRouter.push(`?note-id=${now->Float.toString}`)
   }
 
   let toggleSort = _ => {

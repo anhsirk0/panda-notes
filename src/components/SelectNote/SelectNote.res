@@ -1,6 +1,6 @@
 module NoteItem = {
   @react.component
-  let make = (~note: Shape.Note.t, ~onClick, ~isSelected, ~showDivider) => {
+  let make = (~note: Shape.Note.t, ~isSelected, ~showDivider) => {
     let {pinned, toggleNotePin} = Store.Notes.use()
     let isPinned = pinned->Array.findIndex(i => i == note.id) > -1
     let togglePin = _ => toggleNotePin(note.id, isPinned)
@@ -10,7 +10,7 @@ module NoteItem = {
 
     let afterDelete = () => isPinned ? togglePin() : ()
 
-    <li className onClick key={String.make(isPinned)}>
+    <li className key={String.make(isPinned)}>
       {showDivider
         ? <div className="absolute top-0 left-[7%] h-[1px] w-[86%] bg-base-content/10" />
         : React.null}
@@ -37,7 +37,9 @@ module NoteItem = {
           </li>
         </ul>
       </div>
-      <div className="card-body relative rounded-box overflow-hidden !py-2">
+      <Route.Link
+        to={`?note-id=${note.id->Float.toString}`}
+        className="card-body relative rounded-box overflow-hidden !py-2">
         {isSelected ? <div className="absolute inset-0 h-full w-1.5 bg-primary" /> : React.null}
         <h2 className="card-title resp-title"> {note.title->React.string} </h2>
         <pre className="line-clamp-2 xxl:line-clamp-3 grow -mt-2 text-base-content/80">
@@ -47,24 +49,23 @@ module NoteItem = {
           {isPinned ? <Icon.mapPin className="size-4 text-primary" weight="fill" /> : React.null}
           {note.updatedAt->Utils.toRelativeDateStr->React.string}
         </div>
-      </div>
+      </Route.Link>
     </li>
   }
 }
 
 @react.component
-let make = (~notes: array<Shape.Note.t>, ~noteId, ~setNoteId, ~children) => {
+let make = (~notes: array<Shape.Note.t>, ~noteId, ~children) => {
   let noteIdx = noteId->Option.map(id => notes->Array.findIndex(n => n.id == id))
 
   let noteItems = notes->Array.mapWithIndex((note, idx) => {
-    let onClick = _ => setNoteId(_ => Some(note.id))
     let isSelected = noteId->Option.filter(id => id == note.id)->Option.isSome
     let showDivider = !(
       isSelected || noteIdx->Option.filter(i => i + 1 == idx)->Option.isSome || idx == 0
     )
 
-    <Delay key={note.id->Int.toString} timeout={idx * 80}>
-      <NoteItem isSelected note onClick showDivider />
+    <Delay key={note.id->Float.toString} timeout={idx * 80}>
+      <NoteItem isSelected note showDivider />
     </Delay>
   })
 
