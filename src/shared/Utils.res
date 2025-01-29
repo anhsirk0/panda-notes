@@ -9,6 +9,15 @@ let querySelectAndThen = (selector, action) => {
   | None => ()
   }
 }
+
+let makeDocTitle = title => {
+  switch title {
+  | Some(title) => `${title} • Panda Notes`
+  | None => "Panda Notes"
+  }
+}
+let setDocTitle = title => Document.document->Document.setTitle(makeDocTitle(title))
+
 let setTheme = theme => "html"->querySelectAndThen(setAttribute(_, "data-theme", theme))
 let strContains = (s1, s2) => s1->String.toLowerCase->String.includes(s2->String.toLowerCase)
 

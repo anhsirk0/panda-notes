@@ -14,17 +14,25 @@ module Item = {
 
 @react.component
 let make = (~tag, ~setTag, ~tags) => {
-  let tagItems = tags->Array.map(item => {
+  let tagItems = tags->Array.map((item: Shape.Tag.t) => {
     let onClick = _ => {
       setTag(_ => Some(item))
       RescriptReactRouter.push("/")
+      Utils.setDocTitle(Some(`#${item.title}`))
     }
     let isSelected = tag->Option.filter(Shape.Tag.eq(_, item))->Option.isSome
     <Item key=item.title title=item.title onClick isSelected isTag=true />
   })
 
   <React.Fragment>
-    <Item title="Notes" isSelected={tag->Option.isNone} onClick={_ => setTag(_ => None)} />
+    <Item
+      title="Notes"
+      isSelected={tag->Option.isNone}
+      onClick={_ => {
+        setTag(_ => None)
+        Utils.setDocTitle(None)
+      }}
+    />
     {React.array(tagItems)}
   </React.Fragment>
 }

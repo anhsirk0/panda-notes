@@ -1,6 +1,6 @@
-let useDocTitle = (title: string) => {
+let useDocTitle = title => {
   React.useEffect0(() => {
-    Document.document->Document.setTitle(`${title} • Panda Notes`)
+    Utils.setDocTitle(title)
     None
   })
 }
