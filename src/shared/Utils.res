@@ -27,10 +27,17 @@ let toRelativeDateStr = date => {
 
 let toDateStr = date => date->DateFns.format("hh:mm aa, dd-MM-yyyy")
 
-let copyText: string => unit = %raw(`function (text) { navigator.clipboard.writeText(text) }`)
+let copyText: string => unit = %raw(`function (text) {
+ navigator.clipboard.writeText(text)
+ }`)
 
-let newFileUrl: string => string = %raw(`function (text) { return URL.createObjectURL(new Blob([text], {type: "text/plain"})) }`)
-let revokeObjectURL = %raw(`function (url) { window.URL.revokeObjectURL(url) }`)
+let newFileUrl: string => string = %raw(`function (text) {
+ return URL.createObjectURL(new Blob([text], {type: "text/plain"}))
+ }`)
+
+let revokeObjectURL = %raw(`function (url) {
+ window.URL.revokeObjectURL(url)
+ }`)
 
 let downloadText = (text, title) => {
   let url = text->newFileUrl
