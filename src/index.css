@@ -80,6 +80,10 @@ html,
 
 .wmde-markdown,
 .wmde-markdown-var {
+  textarea {
+    @apply !h-full !outline-none;
+  }
+
   @apply !bg-base-100 !border-base-content/20;
 
   --color-fg-default: oklch(var(--bc)) !important;
@@ -102,7 +106,7 @@ html,
     var(--bc)
   ) !important;
   --color-prettylights-syntax-entity-tag: oklch(var(--s)) !important;
-  --color-prettylights-syntax-keyword: oklch(var(--p)) !important;
+  --color-prettylights-syntax-keyword: oklch(var(--n)) !important;
   --color-prettylights-syntax-string: oklch(var(--su)) !important;
   --color-prettylights-syntax-variable: oklch(var(--er)) !important;
   --color-prettylights-syntax-brackethighlighter-unmatched: oklch(
@@ -162,8 +166,4 @@ html,
 
 .w-md-editor-text-input {
   @apply !text-base-content;
-}
-
-textarea {
-  @apply !h-full !outline-none;
 }

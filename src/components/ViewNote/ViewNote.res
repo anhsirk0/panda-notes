@@ -43,30 +43,7 @@ let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
   })
 
   <div className="flex flex-col grow px-4 py-2 relative">
-    <div className="dropdown dropdown-bottom dropdown-end z-10">
-      <label
-        ariaLabel={`info-${note.title}`}
-        tabIndex=0
-        className="btn btn-sm btn-circle btn-ghost absolute top-2 right-2">
-        <Icon.info className="resp-icon" />
-      </label>
-      <div
-        tabIndex=0
-        className="dropdown-content z-10 shadow mt-10 bg-secondary text-secondary-content rounded-box p-4 flex flex-col">
-        <p className="text-secondary-content/80">
-          {"Updated At:"->React.string}
-          <span className="text-secondary-content font-medium ml-2">
-            {note.updatedAt->Utils.toRelativeDateStr->React.string}
-          </span>
-        </p>
-        <p className="text-secondary-content/80">
-          {"Created At:"->React.string}
-          <span className="text-secondary-content font-medium ml-2">
-            {note.createdAt->Utils.toDateStr->React.string}
-          </span>
-        </p>
-      </div>
-    </div>
+    <NoteOptions note />
     <NoteTitle title=note.title onSaveTitle />
     <NoteTags noteTags=note.tags onAddTag onDeleteTag />
     <div className="border-t border-base-content/20 size-full min-h-0 grow">

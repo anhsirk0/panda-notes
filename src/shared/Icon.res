@@ -20,3 +20,6 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external sortAscending: t = "SortAscending"
 @module("@phosphor-icons/react") external sortDescending: t = "SortDescending"
 @module("@phosphor-icons/react") external info: t = "Info"
+@module("@phosphor-icons/react") external dotsThreeVertical: t = "DotsThreeVertical"
+@module("@phosphor-icons/react") external clipboard: t = "Clipboard"
+@module("@phosphor-icons/react") external markdownLogo: t = "MarkdownLogo"

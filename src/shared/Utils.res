@@ -26,3 +26,21 @@ let toRelativeDateStr = date => {
 }
 
 let toDateStr = date => date->DateFns.format("hh:mm aa, dd-MM-yyyy")
+
+let copyText: string => unit = %raw(`function (text) { navigator.clipboard.writeText(text) }`)
+
+let newFileUrl: string => string = %raw(`function (text) { return URL.createObjectURL(new Blob([text], {type: "text/plain"})) }`)
+let revokeObjectURL = %raw(`function (url) { window.URL.revokeObjectURL(url) }`)
+
+let downloadText = (text, title) => {
+  let url = text->newFileUrl
+  let a = "a"->Document.createElement
+  a->setAttribute("href", url)
+  a->setAttribute("download", `${title}.md`)
+  let _ = Document.body->Document.appendChild(a)
+  a->click
+  let _ = setTimeout(() => {
+    Document.body->Document.removeChild(a)
+    url->revokeObjectURL
+  }, 1)
+}
