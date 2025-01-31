@@ -1,7 +1,6 @@
 @react.component
 let make = (~note: Shape.Note.t, ~afterDelete) => {
-  let (isOpen, setIsOpen) = React.useState(_ => false)
-  let toggleOpen = () => setIsOpen(val => !val)
+  let (isOpen, toggleOpen, _) = Hook.useToggle()
 
   let onClick = evt => {
     evt->ReactEvent.Mouse.stopPropagation

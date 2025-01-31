@@ -1,7 +1,10 @@
 @react.component
 let make = (~note: Shape.Note.t, ~tags: array<Shape.Tag.t>) => {
-  Hook.useDocTitle(Some(note.title))
+  let {settings} = Store.Settings.use()
   let {updateNote} = Store.Notes.use()
+
+  Hook.useDocTitle(settings.showNoteTitle ? Some(note.title) : None)
+
   let (value, setValue) = React.useState(_ => note.content)
   let (isDebounced, setIsDebounced) = React.useState(_ => true)
 

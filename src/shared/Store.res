@@ -23,38 +23,6 @@ module Zustand = {
   }
 }
 
-module Settings = {
-  module StoreData = {
-    type settings = {
-      theme: string,
-      title: string,
-      sidebar: bool,
-      sort: Shape.Sort.t,
-    }
-    let defaultSettings = {
-      sort: DateDesc,
-      theme: "corporate",
-      title: "Panda Notes",
-      sidebar: true,
-    }
-    type state = {
-      settings: settings,
-      update: settings => unit,
-      toggleSidebar: unit => unit,
-    }
-  }
-
-  module AppStore = Zustand.MakeStore(StoreData)
-  let store = AppStore.create(AppStore.persist(set => {
-      settings: StoreData.defaultSettings,
-      update: settings => set(.state => {...state, settings}),
-      toggleSidebar: () =>
-        set(.state => {...state, settings: {...state.settings, sidebar: !state.settings.sidebar}}),
-    }, {name: "panda-notes-settings"}))
-
-  let use = () => store->AppStore.use(state => state)
-}
-
 module Notes = {
   module StoreData = {
     type state = {
@@ -88,4 +56,41 @@ module Notes = {
     }, {name: "panda-notes-library"}))
 
   let use = _ => store->AppStore.use(state => state)
+}
+
+module Settings = {
+  type t = {
+    theme: string,
+    title: string,
+    sidebar: bool,
+    showNoteTitle: bool,
+    showTagTitle: bool,
+    sort: Shape.Sort.t,
+  }
+  let defaultSettings = {
+    sort: DateDesc,
+    theme: "corporate",
+    title: "Panda Notes",
+    sidebar: true,
+    showNoteTitle: true,
+    showTagTitle: true,
+  }
+
+  module StoreData = {
+    type state = {
+      settings: t,
+      update: t => unit,
+      toggleSidebar: unit => unit,
+    }
+  }
+
+  module AppStore = Zustand.MakeStore(StoreData)
+  let store = AppStore.create(AppStore.persist(set => {
+      settings: defaultSettings,
+      update: settings => set(.state => {...state, settings}),
+      toggleSidebar: () =>
+        set(.state => {...state, settings: {...state.settings, sidebar: !state.settings.sidebar}}),
+    }, {name: "panda-notes-settings"}))
+
+  let use = () => store->AppStore.use(state => state)
 }

@@ -1,6 +1,7 @@
 @react.component
 let make = (~count, ~children) => {
   let {settings} = Store.Settings.use()
+  let (isOpen, toggleOpen, _) = Hook.useToggle() // preferences
 
   let left = settings.sidebar ? "-left-[13rem]" : "-left-[29rem] xxl:-left-[33rem]"
   let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
@@ -13,9 +14,12 @@ let make = (~count, ~children) => {
         className="w-[12rem] xxl:w-[16rem] p-2 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
         <div className="flex flex-row gap-1 items-center justify-between h-9 xxl:h-12">
           <p className="card-title"> {settings.title->React.string} </p>
-          // <button ariaLabel="settings-btn" className="btn btn-neutral btn-square resp-btn">
-          //   <Icon.sliders className="resp-icon rotate-90" />
-          // </button>
+          <button
+            ariaLabel="settings-btn"
+            className="btn btn-neutral btn-square resp-btn"
+            onClick={_ => toggleOpen()}>
+            <Icon.sliders className="resp-icon rotate-90" />
+          </button>
         </div>
         {children}
         <div className="grow" />
@@ -32,5 +36,6 @@ let make = (~count, ~children) => {
         </div>
       </div>
     </div>
+    {isOpen ? <Preferences onClose=toggleOpen /> : React.null}
   </React.Fragment>
 }

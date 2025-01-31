@@ -14,11 +14,15 @@ module Item = {
 
 @react.component
 let make = (~tag, ~setTag, ~tags) => {
+  let {settings} = Store.Settings.use()
+
   let tagItems = tags->Array.map((item: Shape.Tag.t) => {
     let onClick = _ => {
       setTag(_ => Some(item))
       RescriptReactRouter.push("/")
-      Utils.setDocTitle(Some(`#${item.title}`))
+      if settings.showTagTitle {
+        Utils.setDocTitle(Some(`#${item.title}`), settings.title)
+      }
     }
     let isSelected = tag->Option.filter(Shape.Tag.eq(_, item))->Option.isSome
     <Item key=item.title title=item.title onClick isSelected isTag=true />
@@ -30,7 +34,7 @@ let make = (~tag, ~setTag, ~tags) => {
       isSelected={tag->Option.isNone}
       onClick={_ => {
         setTag(_ => None)
-        Utils.setDocTitle(None)
+        Utils.setDocTitle(None, settings.title)
       }}
     />
     {React.array(tagItems)}
