@@ -20,9 +20,6 @@ let make = (~tag, ~setTag, ~tags) => {
     let onClick = _ => {
       setTag(_ => Some(item))
       RescriptReactRouter.push("/")
-      if settings.showTagTitle {
-        Utils.setDocTitle(Some(`#${item.title}`), settings.title)
-      }
     }
     let isSelected = tag->Option.filter(Shape.Tag.eq(_, item))->Option.isSome
     <Item key=item.title title=item.title onClick isSelected isTag=true />

@@ -25,9 +25,9 @@ let toRelativeDateStr = date => {
   let fmt = if date->DateFns.isToday {
     "hh:mm aa"
   } else if date->DateFns.isYesterday {
-    "hh:mm aa 'Yesterday'"
+    "hh:mm aa, 'Yesterday'"
   } else if date->DateFns.isThisWeek {
-    "hh:mm aa EEEE"
+    "hh:mm aa, EEEE"
   } else {
     "hh:mm aa, dd-MM-yyyy"
   }
@@ -60,3 +60,6 @@ let downloadText = (text, title) => {
     url->revokeObjectURL
   }, 1)
 }
+
+let toCapitalize = str =>
+  str->String.charAt(0)->String.toUpperCase ++ str->String.sliceToEnd(~start=1)

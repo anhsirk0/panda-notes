@@ -39,6 +39,7 @@ export default {
   plugins: [daisyui],
   daisyui: {
     themes,
-    darkTheme: "business",
+    lightTheme: "retro",
+    darkTheme: "dim",
   },
 };

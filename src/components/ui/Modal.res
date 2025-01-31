@@ -26,7 +26,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
           <div className="flex flex-row items-center justify-between mb-4 -mt-1">
             <p className="font-bold text-lg"> {React.string(title)} </p>
             <button id="close-btn" onClick className="btn resp-btn btn-circle btn-ghost -mt-2">
-              {React.string(`✕`)}
+              <Icon.x className="size-6" />
             </button>
           </div>
           {children}

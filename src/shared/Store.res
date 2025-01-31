@@ -65,6 +65,8 @@ module Settings = {
     sidebar: bool,
     showNoteTitle: bool,
     showTagTitle: bool,
+    showNotesCount: bool,
+    showCloseSidebar: bool,
     sort: Shape.Sort.t,
   }
   let defaultSettings = {
@@ -74,6 +76,8 @@ module Settings = {
     sidebar: true,
     showNoteTitle: true,
     showTagTitle: true,
+    showNotesCount: true,
+    showCloseSidebar: true,
   }
 
   module StoreData = {

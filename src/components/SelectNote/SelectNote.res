@@ -45,7 +45,9 @@ module NoteItem = {
         <pre className="line-clamp-2 xxl:line-clamp-3 grow -mt-2 text-base-content/80">
           {note.content->String.substring(~start=0, ~end=88)->React.string}
         </pre>
-        <div className="card-actions text-sm text-base-content/60 items-center">
+        <div
+          title={note.updatedAt->Utils.toDateStr}
+          className="card-actions text-sm text-base-content/60 items-center">
           {isPinned ? <Icon.mapPin className="size-4 text-primary" weight="fill" /> : React.null}
           {note.updatedAt->Utils.toRelativeDateStr->React.string}
         </div>

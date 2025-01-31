@@ -2,7 +2,6 @@
 
 @react.component
 let make = () => {
-  Js.log(Route.useParams())
   let {settings} = Store.Settings.use()
   let {library, pinned} = Store.Notes.use()
 
@@ -39,6 +38,19 @@ let make = () => {
 
   let key = tag->Option.map(tag => tag.id->Float.toString)->Option.getOr("None")
   let leftP = settings.sidebar ? "pl-[12rem] xxl:pl-[16rem]" : "pl-0"
+
+  React.useEffect3(() => {
+    Utils.setDocTitle(
+      tag->Option.filter(_ => settings.showTagTitle)->Option.map(t => `#${t.title}`),
+      settings.title,
+    )
+    None
+  }, (tag, settings.showTagTitle, settings.title))
+
+  React.useEffect0(() => {
+    settings.theme->Utils.setTheme
+    None
+  })
 
   <React.Fragment>
     <Toast.container pauseOnFocusLoss=false position="bottom-right" />

@@ -3,15 +3,12 @@ let make = (~count, ~children) => {
   let {settings} = Store.Settings.use()
   let (isOpen, toggleOpen, _) = Hook.useToggle() // preferences
 
-  let left = settings.sidebar ? "-left-[13rem]" : "-left-[29rem] xxl:-left-[33rem]"
-  let pos = `${left} has-[#theme-btn:focus]:left-0 has-[#theme-container>*:focus]:left-0`
   let countLabel = count->Int.toString ++ " Note" ++ (count == 1 ? "" : "s")
 
   <React.Fragment>
-    <div className={`fixed top-0 ${pos} z-10 w-fit h-full flex flex-row transitional`}>
-      <ThemesList />
+    <div className={`fixed top-0 left-0 z-10 w-fit h-full flex flex-row transitional`}>
       <div
-        className="w-[12rem] xxl:w-[16rem] p-2 xxl:p-2 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
+        className="w-[12rem] xxl:w-[16rem] p-2 xxl:px-4 flex flex-col gap-1 xxl:gap-2 h-full bg-neutral text-neutral-content">
         <div className="flex flex-row gap-1 items-center justify-between h-9 xxl:h-12">
           <p className="card-title"> {settings.title->React.string} </p>
           <button
@@ -23,16 +20,12 @@ let make = (~count, ~children) => {
         </div>
         {children}
         <div className="grow" />
-        <div className="flex flex-row items-center">
-          <p className="text-neutral-content"> {countLabel->React.string} </p>
+        <div className="flex flex-row items-center -mb-2">
+          {settings.showNotesCount
+            ? <p className="text-neutral-content/80 text-lg"> {countLabel->React.string} </p>
+            : React.null}
           <div className="grow" />
-          <button
-            ariaLabel="select-theme-btn"
-            id="theme-btn"
-            className="btn btn-neutral btn-square resp-btn">
-            <Icon.palette className="resp-icon" />
-          </button>
-          <ToggleSidebarButton />
+          {settings.showCloseSidebar ? <ToggleSidebarButton /> : React.null}
         </div>
       </div>
     </div>

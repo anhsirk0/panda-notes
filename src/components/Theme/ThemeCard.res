@@ -23,7 +23,5 @@ module MyOverrides = {
 let make = (~theme, ~onChange, ~children) => {
   let onClick = _ => theme->onChange
 
-  <li className="btn w-full justify-between relative" onClick tabIndex=0 dataTheme=theme>
-    {children}
-  </li>
+  <li className="col-span-3 bg-transparent" onClick tabIndex=0 dataTheme=theme> {children} </li>
 }

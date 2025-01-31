@@ -2,6 +2,10 @@ module Sort = {
   type t = DateAsc | DateDesc
 }
 
+module PrefTabs = {
+  type t = General | Theme
+}
+
 module Tag = {
   type id = float
   type t = {id: id, title: string}
