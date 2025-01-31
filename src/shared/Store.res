@@ -71,7 +71,7 @@ module Settings = {
   }
   let defaultSettings = {
     sort: DateDesc,
-    theme: "corporate",
+    theme: "retro",
     title: "Panda Notes",
     sidebar: true,
     showNoteTitle: true,
