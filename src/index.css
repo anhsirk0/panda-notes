@@ -11,6 +11,7 @@
 
 html,
 .wmde-markdown {
+  scrollbar-gutter: auto !important;
   font-family:
     Manrope,
     Open Sans;

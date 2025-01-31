@@ -18,7 +18,7 @@ let make = (~title, ~onClose, ~children, ~classes=?) => {
     None
   })
 
-  switch ReactDOM.querySelector("#root") {
+  switch ReactDOM.querySelector("html") {
   | Some(domElement) =>
     ReactDOM.createPortal(
       <div onClick onKeyDown className="modal modal-open modal-bottom sm:modal-middle">
