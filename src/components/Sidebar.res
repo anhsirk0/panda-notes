@@ -4,7 +4,7 @@ let make = (~count, ~children) => {
   let (isOpen, toggleOpen, _) = Hook.useToggle() // preferences
 
   let countLabel = count->Int.toString ++ " Note" ++ (count == 1 ? "" : "s")
-  let left = settings.sidebar ? "-left-[13rem]" : "-left-[29rem] xxl:-left-[33rem]"
+  let left = settings.sidebar ? "left-0" : "-left-[12rem] xxl:-left-[16rem]"
   <React.Fragment>
     <div className={`fixed top-0 ${left} z-10 w-fit h-full flex flex-row transitional`}>
       <div
