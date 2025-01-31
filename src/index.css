@@ -80,6 +80,10 @@ html,
 
 .wmde-markdown,
 .wmde-markdown-var {
+  li {
+    @apply list-disc;
+  }
+
   textarea {
     @apply !h-full !outline-none;
   }
