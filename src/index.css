@@ -67,13 +67,21 @@ html,
   @apply bg-warning text-warning-content;
 }
 
-/* .Toastify__toast--success { */
-/*   @apply bg-success/40 text-success-content; */
-/* } */
+.Toastify__toast--success {
+  @apply bg-success/50 text-success-content;
+  svg,
+  .Toastify__close-button > svg {
+    @apply fill-success-content;
+  }
+}
 
-/* .Toastify__toast--error { */
-/*   @apply bg-error/40 text-error-content; */
-/* } */
+.Toastify__toast--error {
+  @apply bg-error/50 text-error-content;
+  svg,
+  .Toastify__close-button > svg {
+    @apply fill-error-content;
+  }
+}
 
 .Toastify__close-button > svg {
   @apply fill-neutral-content;

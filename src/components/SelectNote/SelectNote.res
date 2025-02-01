@@ -26,14 +26,19 @@ module NoteItem = {
         <ul
           tabIndex=0
           className="dropdown-content z-10 menu shadow mt-10 bg-secondary text-secondary-content rounded-box [&>li>*:hover]:bg-base-100/20">
-          <li>
-            <DeleteNoteButton note afterDelete />
-          </li>
+          {!note.isDeleted
+            ? <li>
+                <DeleteNoteButton note afterDelete trash=true />
+              </li>
+            : React.null}
           <li>
             <button onClick=togglePin>
               <Icon.mapPin className="text-xl" />
               {(isPinned ? "Unpin" : "Pin")->React.string}
             </button>
+          </li>
+          <li>
+            <DeleteNoteButton note afterDelete />
           </li>
         </ul>
       </div>

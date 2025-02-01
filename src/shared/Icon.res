@@ -11,6 +11,7 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external menu: t = "List"
 @module("@phosphor-icons/react") external x: t = "X"
 @module("@phosphor-icons/react") external trash: t = "Trash"
+@module("@phosphor-icons/react") external trashSimple: t = "TrashSimple"
 @module("@phosphor-icons/react") external notepad: t = "Notepad"
 @module("@phosphor-icons/react") external hash: t = "Hash"
 @module("@phosphor-icons/react") external mapPin: t = "MapPinSimple"

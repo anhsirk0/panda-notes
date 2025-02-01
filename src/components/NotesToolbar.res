@@ -1,5 +1,5 @@
 @react.component
-let make = (~tag: option<Shape.Tag.t>, ~query, ~setQuery) => {
+let make = (~tag: Shape.Tag.kind, ~query, ~setQuery) => {
   let {addNote} = Store.Notes.use()
   let {settings, update} = Store.Settings.use()
 
@@ -22,7 +22,12 @@ let make = (~tag: option<Shape.Tag.t>, ~query, ~setQuery) => {
       content: "",
       createdAt: now,
       updatedAt: now,
-      tags: tag->Option.map(t => [t])->Option.getOr([]),
+      tags: switch tag {
+      | Home => []
+      | Trash => []
+      | Tag(t) => [t]
+      },
+      isDeleted: false,
     }
     addNote(note)
     RescriptReactRouter.push(`?note-id=${now->Float.toString}`)
@@ -55,7 +60,11 @@ let make = (~tag: option<Shape.Tag.t>, ~query, ~setQuery) => {
     : <div className="flex flex-row my-2 items-center">
         {settings.sidebar ? React.null : <ToggleSidebarButton />}
         <p className="card-title line-clamp-1">
-          {tag->Option.map(t => "#" ++ t.title)->Option.getOr("Notes")->React.string}
+          {switch tag {
+          | Home => "Notes"
+          | Trash => "Trash"
+          | Tag(t) => `#${t.title}`
+          }->React.string}
         </p>
         <div className="grow" />
         <button onClick=onAdd ariaLabel="add-note" className="btn btn-ghost btn-square resp-btn">

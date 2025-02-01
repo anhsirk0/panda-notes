@@ -10,6 +10,7 @@ module Tag = {
   type id = float
   type t = {id: id, title: string}
   let eq = (one, other) => one.id == other.id
+  type kind = Home | Trash | Tag(t)
 }
 
 module Note = {
@@ -21,6 +22,7 @@ module Note = {
     createdAt: float,
     updatedAt: float,
     tags: array<Tag.t>,
+    isDeleted: bool,
   }
 }
 
@@ -429,6 +431,7 @@ To create an index, manually link to sections using anchor links. Each header in
       createdAt: Date.now(),
       updatedAt: Date.now(),
       tags: [],
+      isDeleted: false,
     },
   ]
 }
