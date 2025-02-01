@@ -1,7 +1,7 @@
 module NoteItem = {
   @react.component
   let make = (~note: Shape.Note.t, ~isSelected, ~showDivider) => {
-    let {pinned, toggleNotePin} = Store.Notes.use()
+    let {pinned, toggleNotePin, updateNote} = Store.Notes.use()
     let isPinned = pinned->Array.findIndex(i => i == note.id) > -1
     let togglePin = _ => toggleNotePin(note.id, isPinned)
 
@@ -9,6 +9,10 @@ module NoteItem = {
     let className = `card card-compact ${bg} w-full relative shrink-0 cursor-pointer animate-slide group`
 
     let afterDelete = () => isPinned ? togglePin() : ()
+    let restoreNote = _ => {
+      updateNote({...note, isDeleted: false})
+      Toast.success("Note restored successfully")
+    }
 
     <li className key={String.make(isPinned)}>
       {showDivider
@@ -26,17 +30,25 @@ module NoteItem = {
         <ul
           tabIndex=0
           className="dropdown-content z-10 menu shadow mt-10 bg-secondary text-secondary-content rounded-box [&>li>*:hover]:bg-base-100/20">
+          {note.isDeleted
+            ? <li>
+                <button
+                  className="hover:!bg-success/80 hover:text-success-content" onClick=restoreNote>
+                  <Icon.recycle className="text-xl" />
+                  {"Restore"->React.string}
+                </button>
+              </li>
+            : <li>
+                <DeleteNoteButton note afterDelete trash=true />
+              </li>}
           {!note.isDeleted
             ? <li>
-                <DeleteNoteButton note afterDelete trash=true />
+                <button onClick=togglePin>
+                  <Icon.mapPin className="text-xl" />
+                  {(isPinned ? "Unpin" : "Pin")->React.string}
+                </button>
               </li>
             : React.null}
-          <li>
-            <button onClick=togglePin>
-              <Icon.mapPin className="text-xl" />
-              {(isPinned ? "Unpin" : "Pin")->React.string}
-            </button>
-          </li>
           <li>
             <DeleteNoteButton note afterDelete />
           </li>

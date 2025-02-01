@@ -25,3 +25,4 @@ type t = React.component<props>
 @module("@phosphor-icons/react") external clipboard: t = "Clipboard"
 @module("@phosphor-icons/react") external markdownLogo: t = "MarkdownLogo"
 @module("@phosphor-icons/react") external caretLineLeft: t = "CaretLineLeft"
+@module("@phosphor-icons/react") external recycle: t = "Recycle"
