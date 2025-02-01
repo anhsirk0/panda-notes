@@ -10,4 +10,5 @@ Panda-notes is a simple PWA for managing notes using markdown format. It is heav
 
 ## Screenshots
 ![main.png](https://codeberg.org/anhsirk0/panda-notes/raw/branch/main/screenshots/main.png)
+![themes.png](https://codeberg.org/anhsirk0/panda-notes/raw/branch/themes/screenshots/themes.png)
 
