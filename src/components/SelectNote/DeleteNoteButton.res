@@ -10,10 +10,10 @@ let make = (~note: Shape.Note.t, ~afterDelete, ~trash=false) => {
   let {deleteNote, updateNote} = Store.Notes.use()
 
   let onDelete = _ => {
-    if note.isDeleted {
-      deleteNote(note.id)
-    } else {
+    if trash {
       updateNote({...note, isDeleted: true})
+    } else {
+      deleteNote(note.id)
     }
     afterDelete()
     Toast.success(`Note ${trash ? "trash" : "delet"}ed successfully`)
